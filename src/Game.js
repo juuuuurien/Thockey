@@ -4,6 +4,7 @@ import useKeyPress from "./hooks/useKeyPress";
 import { generateSentence } from "./helpers/generateSentence";
 import { spanify } from "./helpers/spanify";
 import { context } from "./context";
+import { VscDebugRestart } from "react-icons/vsc";
 
 const Game = () => {
   const [state, setState] = useContext(context);
@@ -136,10 +137,14 @@ const Game = () => {
 
   return (
     <div>
-      <div className="caret" />
-      <div>{sentence && sentence}</div>
-      <div className="reset_button">
-        <button
+      <div className="game_container">
+        <div className="words">
+          <div className="caret" />
+          <div>{sentence && sentence}</div>
+          <div className="reset_button"></div>
+        </div>
+        <div
+          className="restart"
           onClick={() => {
             setCurrentIndex(0);
             setSentence("");
@@ -148,8 +153,8 @@ const Game = () => {
             document.querySelector(".caret").style.top = null;
           }}
         >
-          Reset
-        </button>
+          <VscDebugRestart />
+        </div>
       </div>
     </div>
   );

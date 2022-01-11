@@ -1,7 +1,7 @@
 import Game from "./Game";
 import Banner from "./Banner";
 import { useState } from "react";
-import { context, Provider } from "./context";
+import { Provider } from "./context";
 import { useEffect } from "react/cjs/react.development";
 
 function App() {
@@ -17,11 +17,10 @@ function App() {
   return (
     <Provider value={[state, setState]}>
       <div className="wrapper">
+        <div className="stars"></div>
         <Banner />
         <div className="capslock">{state.capslock && "CapsLock is on"}</div>
-        <div className="words">
-          <Game />
-        </div>
+        <Game />
       </div>
     </Provider>
   );
