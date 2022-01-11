@@ -1,0 +1,80 @@
+.App {
+  text-align: center;
+}
+
+.capslock {
+  color: rgb(189, 87, 83);
+  font-size: small;
+  margin: auto;
+  padding: 1rem;
+  width: 33%;
+  font-family: "Roboto", sans-serif;
+}
+
+.right.character {
+  /* background-color: rgb(127, 255, 195); */
+  color: #82b0be;
+  transition: all 0.15s ease-in-out;
+}
+
+.caret {
+  height: 29px;
+  width: 3px;
+  background-color: white;
+  position: absolute;
+  transition: all 0.1s ease-in-out;
+}
+
+.wrong {
+  background-color: rgb(255, 131, 127);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.33, 2);
+}
+
+.character {
+  /* padding: 0 0.03rem; */
+  font-size: 1.4rem;
+  font-family: "Source Code Pro", monospace;
+  color: #5d6c77;
+}
+
+.banner {
+  color: #5a8ea7;
+  width: 50%;
+  margin: auto;
+  padding: 5rem 0 5rem 0;
+  text-align: center;
+  font-size: 3rem;
+  font-family: "Pacifico", cursive;
+}
+
+.words {
+  background-color: #334756;
+  padding: 2rem;
+  margin: auto;
+  border-radius: 1rem;
+  width: 33%;
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  background-color: #27353f;
+}
+
+.reset_button {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+}
+
+.blink {
+  animation: blinker 0.8s linear infinite;
+}
+
+@keyframes blinker {
+  33% {
+    background-color: rgb(157, 158, 230);
+  }
+}
