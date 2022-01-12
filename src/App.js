@@ -1,8 +1,11 @@
 import Game from "./Game";
-import Banner from "./Banner";
-import { useState } from "react";
+import ThockeyLogo from "./Banner";
+import { useState, useRef } from "react";
 import { Provider } from "./context";
 import { useEffect } from "react/cjs/react.development";
+import StarryBackground from "./StarryBackground";
+import Canvas from "./Canvas";
+import Background from "./Background";
 
 function App() {
   const [state, setState] = useState({
@@ -16,12 +19,10 @@ function App() {
 
   return (
     <Provider value={[state, setState]}>
-      <div className="wrapper">
-        <div className="stars"></div>
-        <Banner />
-        <div className="capslock">{state.capslock && "CapsLock is on"}</div>
-        <Game />
-      </div>
+      <Canvas className="background" />
+      <ThockeyLogo />
+      <div className="capslock">{state.capslock && "CapsLock is on"}</div>
+      <Game />
     </Provider>
   );
 }

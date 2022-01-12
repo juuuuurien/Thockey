@@ -11,6 +11,16 @@ const Game = () => {
   const [sentence, setSentence] = useState();
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const handleResize = () => {
+    // fix caret depending on window
+    let caret = document.querySelector(".caret");
+    let char = Array.from(document.querySelectorAll(".character"))[
+      currentIndex
+    ].getBoundingClientRect();
+    caret.style.top = char.top.toString() + "px";
+    caret.style.left = (char.left + char.width).toString() + "px";
+  };
+
   useEffect(async () => {
     //set sentence into state
     const s = generateSentence();
@@ -20,27 +30,18 @@ const Game = () => {
       let char = Array.from(document.querySelectorAll(".caret"))[0];
       char.classList.add("blink");
     }
-    if (sentence) {
-      let cPos = Array.from(
-        document.querySelectorAll(".character")
-      )[0].getBoundingClientRect();
-      let caret = document.querySelector(".caret");
-      caret.style.top = cPos.top.toString() + "px";
-      caret.style.left = cPos.left.toString() + "px";
-    }
+    window.addEventListener("resize", handleResize);
   }, [sentence]);
 
   const updateCaret = (type) => {
-    const PADDING = 1;
     let caret = document.querySelector(".caret");
-
+    let sent = Array.from(document.querySelectorAll(".character"));
     switch (type) {
       case "forward": {
         //get correct node, move position accordingly
         if (currentIndex < sentence.length) {
-          let char = Array.from(document.querySelectorAll(".character"))[
-            currentIndex
-          ].getBoundingClientRect();
+          let char = sent[currentIndex].getBoundingClientRect();
+          // caret.style.transform = `translateX(${char.left + char.width}px)`;
           caret.style.top = char.top.toString() + "px";
           caret.style.left = (char.left + char.width).toString() + "px";
         }
@@ -48,18 +49,12 @@ const Game = () => {
         return;
       }
       case "back": {
-        if (
-          Array.from(document.querySelectorAll(".character"))[currentIndex - 2]
-        ) {
-          let char = Array.from(document.querySelectorAll(".character"))[
-            currentIndex - 2
-          ].getBoundingClientRect();
+        if (sent[currentIndex - 2]) {
+          let char = sent[currentIndex - 2].getBoundingClientRect();
           caret.style.top = char.top.toString() + "px";
           caret.style.left = (char.left + char.width).toString() + "px";
         } else {
-          let char = Array.from(
-            document.querySelectorAll(".character")
-          )[0].getBoundingClientRect();
+          let char = sent[0].getBoundingClientRect();
           caret.style.top = char.top.toString() + "px";
           caret.style.left = char.left.toString() + "px";
         }
@@ -72,12 +67,10 @@ const Game = () => {
   };
 
   const updateCharacterStyle = async (key, currentChar) => {
-    let char = Array.from(document.querySelectorAll(".character"))[
-      currentIndex
-    ];
-    const prevChar = Array.from(document.querySelectorAll(".character"))[
-      currentIndex - 1
-    ];
+    let sent = Array.from(document.querySelectorAll(".character"));
+
+    let char = sent[currentIndex];
+    const prevChar = sent[currentIndex - 1];
     let type;
 
     if (!state.started) {
@@ -141,7 +134,6 @@ const Game = () => {
         <div className="words">
           <div className="caret" />
           <div>{sentence && sentence}</div>
-          <div className="reset_button"></div>
         </div>
         <div
           className="restart"
@@ -153,7 +145,7 @@ const Game = () => {
             document.querySelector(".caret").style.top = null;
           }}
         >
-          <VscDebugRestart />
+          <VscDebugRestart color="#82b0be" />
         </div>
       </div>
     </div>

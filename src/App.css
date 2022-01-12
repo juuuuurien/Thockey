@@ -7,22 +7,23 @@
   font-size: small;
   margin: auto;
   padding: 1rem;
-  width: 33%;
+  width: 750px;
   font-family: "Roboto", sans-serif;
 }
 
 .right.character {
   /* background-color: rgb(127, 255, 195); */
   color: #82b0be;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.15s linear;
 }
 
 .caret {
   height: 29px;
   width: 3px;
   background-color: white;
-  position: absolute;
-  transition: all 155ms ease;
+  position: fixed;
+  transition: 200ms cubic-bezier(0, 0, 0.59, 1.4);
+  line-height: 2.5rem;
 }
 
 .wrong {
@@ -32,30 +33,51 @@
 
 .character {
   /* padding: 0 0.03rem; */
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-family: "Source Code Pro", monospace;
-  color: #5d6c77;
+  color: #202637;
 }
 
-.banner {
+.ThockeyLogo {
   color: #5a8ea7;
   width: 50%;
   margin: auto;
   padding: 5rem 0 5rem 0;
   text-align: center;
-  font-size: 3rem;
+  font-size: 4rem;
   font-family: "Pacifico", cursive;
 }
 
 .game_container {
-  width: 50%;
+  width: 750px;
   margin: auto;
   justify-content: center;
   text-align: center;
 }
 
+.background {
+  position: absolute;
+  z-index: -1;
+}
+
+.smallStar {
+  position: absolute;
+  background-color: white;
+  animation: smallRise 5s linear infinite;
+}
+
+@keyframes smallRise {
+  from {
+    transform: translateY(-30%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
 .restart {
   position: relative;
+  float: right;
   font-weight: 400;
   font-size: 1.3rem;
   height: 2rem;
@@ -68,43 +90,30 @@
   justify-content: center;
   text-align: center;
   align-self: center;
-  border: none;
+  border: 1px solid #202637;
   cursor: pointer;
-  box-shadow: 0 12px 35px 0 rgba(16, 39, 112, 0.25);
   outline: 0;
-  text-transform: capitalize;
-  background-color: #334756;
-  margin: 1rem;
+  background-color: #0c162d;
+  margin: 0.5rem;
 }
 
 .restart:hover {
-  background-color: #5a8ea7;
+  background-color: #0c225e;
   transition: 100ms ease;
 }
 
 .words {
-  background-color: #334756;
+  background-color: #0c162d;
   padding: 2rem;
   border-radius: 0.5rem;
   text-align: left;
+  line-height: 2rem;
+  border: 1px solid #202637;
 }
-
-/* .wrapper {
-  height: 100vh;
-  width: 100%;
-  background-color: #27353f;
-} */
 
 body {
-  background-color: #08090a;
-}
-
-.reset_button {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  width: 100%;
-  margin: auto;
+  background-color: #1c166d;
+  overflow: hidden;
 }
 
 .blink {
