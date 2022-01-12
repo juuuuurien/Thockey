@@ -1,5 +1,5 @@
-const Banner = () => {
-  return <div className="banner">Thockey.io</div>;
+const ThockeyLogo = () => {
+  return <div className="ThockeyLogo">Thockey.io</div>;
 };
 
-export default Banner;
+export default ThockeyLogo;
