@@ -21,16 +21,19 @@ const Game = () => {
     caret.style.left = (char.left + char.width).toString() + "px";
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     //set sentence into state
-    const s = generateSentence();
-    const spans = await spanify(s);
-    if (!sentence) setSentence(spans);
-    if (sentence && !state.started) {
-      let char = Array.from(document.querySelectorAll(".caret"))[0];
-      char.classList.add("blink");
-    }
-    window.addEventListener("resize", handleResize);
+    const start = async () => {
+      const s = generateSentence();
+      const spans = await spanify(s);
+      if (!sentence) setSentence(spans);
+      if (sentence && !state.started) {
+        let char = Array.from(document.querySelectorAll(".caret"))[0];
+        char.classList.add("blink");
+      }
+      window.addEventListener("resize", handleResize);
+    };
+    start();
   }, [sentence]);
 
   const updateCaret = (type) => {

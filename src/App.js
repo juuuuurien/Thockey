@@ -2,7 +2,6 @@ import Game from "./Game";
 import ThockeyLogo from "./Banner";
 import { useState, useRef } from "react";
 import { Provider } from "./context";
-import { useEffect } from "react/cjs/react.development";
 import Canvas from "./Canvas";
 
 function App() {
