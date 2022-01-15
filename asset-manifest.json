@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/thockey/static/css/main.e0e39a48.css",
-    "main.js": "/thockey/static/js/main.7062f3a4.js",
+    "main.css": "/thockey/static/css/main.e506d27a.css",
+    "main.js": "/thockey/static/js/main.a3b8db33.js",
     "static/js/787.197847ea.chunk.js": "/thockey/static/js/787.197847ea.chunk.js",
     "index.html": "/thockey/index.html",
-    "main.e0e39a48.css.map": "/thockey/static/css/main.e0e39a48.css.map",
-    "main.7062f3a4.js.map": "/thockey/static/js/main.7062f3a4.js.map",
+    "main.e506d27a.css.map": "/thockey/static/css/main.e506d27a.css.map",
+    "main.a3b8db33.js.map": "/thockey/static/js/main.a3b8db33.js.map",
     "787.197847ea.chunk.js.map": "/thockey/static/js/787.197847ea.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e0e39a48.css",
-    "static/js/main.7062f3a4.js"
+    "static/css/main.e506d27a.css",
+    "static/js/main.a3b8db33.js"
   ]
 }
