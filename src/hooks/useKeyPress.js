@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { context } from "../context";
+import { context } from "../context/context";
 
 //1
 const useKeyPress = (callback) => {
