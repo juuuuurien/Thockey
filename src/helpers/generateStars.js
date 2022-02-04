@@ -10,23 +10,24 @@ export const generateStars = () => {
 
     switch (_size) {
       case 3: {
-        _speed = 0.1;
+        _speed = 0.55;
         _color = "white";
         break;
       }
       case 2: {
-        _speed = 0.2;
+        _speed = 0.35;
         _color = "white";
+        _size = 1.5;
         break;
       }
       case 4: {
-        if (Math.random() > 0.66) {
-          _speed = 0.05;
+        if (Math.random() > 0.75) {
+          _speed = 0.15;
           _color = "rgb(256,256,256,0.3)";
-          _size = 4;
+          _size = 5;
           break;
         } else {
-          _speed = 0.02;
+          _speed = 0.095;
           _color = "white";
           _size = 1;
           break;

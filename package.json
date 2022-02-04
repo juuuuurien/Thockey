@@ -2,7 +2,7 @@
   "name": "typr",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://juuuuurien.github.io/thockey",
+  "homepage": "https://www.thockey.io/",
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
     "@testing-library/jest-dom": "^5.16.1",
