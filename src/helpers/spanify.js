@@ -1,4 +1,5 @@
 export const spanify = async (s) => {
+  let string = s;
   const spans = s.split("").map((c, i) => {
     return (
       <span key={i} className="character">
@@ -7,5 +8,5 @@ export const spanify = async (s) => {
     );
   });
 
-  return spans;
+  return [spans, string];
 };

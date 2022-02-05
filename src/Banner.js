@@ -1,5 +1,5 @@
 const ThockeyLogo = () => {
-  return <div className="ThockeyLogo">Thockey.io</div>;
+  return <h1 className="ThockeyLogo">Thockey</h1>;
 };
 
 export default ThockeyLogo;
