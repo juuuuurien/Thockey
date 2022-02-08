@@ -16,26 +16,28 @@ const Game = () => {
   const [state, setState] = useContext(context);
   const [gameState, setGameState] = useState({
     sentence: undefined,
-    currentIndex: 0,
+    currentIndex: 0
   });
   const timerRef = useRef();
+  const animationTimeout = useRef();
   const stateRef = useRef();
 
   const handleResize = () => {
     // fix caret depending on window
-    let caret = document.querySelector(".caret");
-    let charWinPosition = Array.from(document.querySelectorAll(".character"))[
-      gameState.currentIndex
-    ].getBoundingClientRect();
-    caret.style.top = charWinPosition.top.toString() + "px";
-    caret.style.left = charWinPosition.left.toString() + "px";
+    if (!state.finished) {
+      let caret = document.querySelector(".caret");
+      let charWinPosition = Array.from(document.querySelectorAll(".character"))[
+        gameState.currentIndex
+      ].getBoundingClientRect();
+      caret.style.top = charWinPosition.top.toString() + "px";
+      caret.style.left = charWinPosition.left.toString() + "px";
+    }
   };
 
   const calculateAccuracy = () => {
     const wrongCount = Array.from(document.querySelectorAll(".wrong")).length;
-    const charCount = Array.from(
-      document.querySelectorAll(".character")
-    ).length;
+    const charCount = Array.from(document.querySelectorAll(".character"))
+      .length;
 
     return Math.ceil(((charCount - wrongCount) / charCount) * 100 * 10) / 10;
   };
@@ -63,7 +65,7 @@ const Game = () => {
 
       setState({
         ...state,
-        wpm: _wpm,
+        wpm: _wpm
       });
     }
     //trigger fade animations
@@ -75,7 +77,7 @@ const Game = () => {
           setting: false,
           finished: true,
           caretHidden: true,
-          accuracy: calculateAccuracy(),
+          accuracy: calculateAccuracy()
         });
         return clearTimeout(timer2);
       }, 150);
@@ -85,15 +87,16 @@ const Game = () => {
 
   useEffect(() => {
     stateRef.current = state;
+    let { sentence } = gameState;
+
     const init = async () => {
-      let { sentence } = gameState;
       const s = generateSentence(state.numWords);
       const [spans, string] = await spanify(s);
 
       if (!sentence)
         setGameState({
           ...gameState,
-          sentence: { spans: spans, string: string },
+          sentence: { spans: spans, string: string }
         });
 
       if (sentence && !state.started) {
@@ -102,7 +105,7 @@ const Game = () => {
       }
     };
 
-    init();
+    if (!sentence) init();
     window.onresize = handleResize;
   }, [gameState.sentence]);
 
@@ -136,7 +139,7 @@ const Game = () => {
         let _wpm = Math.ceil((right * 60 * 1000) / msElapsed);
 
         wpmData.push(_wpm);
-        msElapsedData.push(Math.floor(msElapsed / 10) * 10);
+        msElapsedData.push(Math.floor(msElapsed));
 
         setState({
           ...stateRef.current,
@@ -144,7 +147,7 @@ const Game = () => {
           wpm: _wpm,
           msElapsed: msElapsed,
           wpmData: wpmData,
-          msElapsedData: msElapsedData,
+          msElapsedData: msElapsedData
         });
       }
     }, frameRate);
@@ -185,6 +188,7 @@ const Game = () => {
   };
 
   const updateCharacterStyle = async (key, currentChar) => {
+    updateCaret();
     let { sentence, currentIndex } = gameState;
     let sent = Array.from(document.querySelectorAll(".character"));
 
@@ -239,20 +243,22 @@ const Game = () => {
   useKeyPress(async (key) => {
     let { sentence, currentIndex } = gameState;
 
-    if (!state.started) {
-      setState({ ...state, started: true });
-      startGame();
+    if (key.length === 1 || key === "Backspace") {
+      if (!state.started) {
+        setState({ ...state, started: true });
+        startGame();
+      }
+      let currentChar = sentence.spans[0].props.children;
+      if (currentIndex < sentence.spans.length)
+        currentChar = sentence.spans[currentIndex].props.children;
+      await updateCharacterStyle(key, currentChar);
+
+      if (currentIndex === sentence.spans.length - 1 && key === currentChar) {
+        handleFinished();
+      }
     }
-
-    updateCaret();
-
-    let currentChar = sentence.spans[0].props.children;
-    if (currentIndex < sentence.spans.length)
-      currentChar = sentence.spans[currentIndex].props.children;
-    await updateCharacterStyle(key, currentChar);
-
-    if (currentIndex === sentence.spans.length - 1 && key === currentChar) {
-      handleFinished();
+    if (key === "ResetMacro") {
+      handleReset(state.numWords);
     }
   });
 
@@ -273,6 +279,8 @@ const Game = () => {
       accuracy: 0,
       setting: false,
       caretHidden: false,
+      wpmData: [],
+      msElapsedData: []
     });
 
     document.querySelector(".caret").classList.remove("hidden");
@@ -295,7 +303,7 @@ const Game = () => {
           />
           <Button
             onClick={() => {
-              handleReset(15);
+              handleReset(5);
             }}
             className={state.numWords === 15 ? "selected" : "button"}
           >
@@ -319,7 +327,7 @@ const Game = () => {
           </Button>
         </div>
       </div>
-      <div className="content-container">
+      <div className="words-content-container">
         {!state.finished && (
           <div style={{ color: "rgb(227, 237, 255)", fontSize: "1rem" }}>
             WPM: {state.wpm}
@@ -328,8 +336,10 @@ const Game = () => {
             </span>
           </div>
         )}
-
         <Words gameState={gameState} />
+        <div id="reset-label">
+          <span id="key">alt</span> + <span id="key">enter</span> to reset
+        </div>
       </div>
       <div className="content-container" />
     </div>
