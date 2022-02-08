@@ -1,8 +1,68 @@
 import { useContext } from "react";
 import { context } from "../../context/context";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+export const options = {
+  responsive: true,
+  plugins: {
+    title: {
+      display: false,
+    },
+  },
+  scales: {
+    x: {
+      display: true,
+      title: {
+        display: true,
+        text: "Time in milliseconds",
+      },
+    },
+    y: {
+      display: true,
+      title: {
+        display: true,
+        text: "Words per Minute",
+      },
+    },
+  },
+};
 
 const Results = ({ gameState }) => {
   const [state, setState] = useContext(context);
+
+  const labels = state.msElapsedData;
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Number of Words Typed vs Time",
+        data: state.wpmData,
+        borderColor: "rgb(227, 237, 255, 0.5)",
+        backgroundColor: "rgb(227, 237, 255)",
+      },
+    ],
+  };
 
   return (
     <div className={state.setting ? "results fade-in" : "results fade-in"}>
@@ -23,6 +83,7 @@ const Results = ({ gameState }) => {
           <span>{Math.ceil(state.msElapsed / 1000)} sec</span>
         </li>
       </ul>
+      <Line options={options} data={data} />
     </div>
   );
 };

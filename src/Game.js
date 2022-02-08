@@ -19,7 +19,6 @@ const Game = () => {
     currentIndex: 0,
   });
   const timerRef = useRef();
-  const animationTimeout = useRef();
   const stateRef = useRef();
 
   const handleResize = () => {
@@ -105,18 +104,14 @@ const Game = () => {
 
     init();
     window.onresize = handleResize;
-
-    return () => {
-      if (animationTimeout.current) {
-        clearTimeout(animationTimeout);
-      }
-    };
-  });
+  }, [gameState.sentence]);
 
   const startGame = () => {
     let { sentence } = gameState;
     let timeStart = dayjs();
-    const frameRate = 50;
+    const frameRate = 500;
+    let wpmData = [];
+    let msElapsedData = [];
 
     const timer = setInterval(() => {
       let wordArr = sentence.string.split(" ");
@@ -140,11 +135,16 @@ const Game = () => {
 
         let _wpm = Math.ceil((right * 60 * 1000) / msElapsed);
 
+        wpmData.push(_wpm);
+        msElapsedData.push(Math.floor(msElapsed / 10) * 10);
+
         setState({
           ...stateRef.current,
           started: true,
           wpm: _wpm,
           msElapsed: msElapsed,
+          wpmData: wpmData,
+          msElapsedData: msElapsedData,
         });
       }
     }, frameRate);

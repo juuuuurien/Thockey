@@ -16,6 +16,8 @@ function App() {
     accuracy: 0,
     setting: false,
     caretHidden: false,
+    wpmData: [],
+    msElapsedData: [],
   });
 
   return (

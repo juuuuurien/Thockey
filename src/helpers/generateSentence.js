@@ -15,6 +15,6 @@ export const generateSentence = (wordcount) => {
       }
     }
   }
-
+  console.log(s);
   return s;
 };
