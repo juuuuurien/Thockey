@@ -5,10 +5,12 @@ import { context } from "../context/context";
 const useKeyPress = (callback) => {
   //2
   const [state, setState] = useContext(context);
-  const [keyPressed, setKeyPressed] = useState();
+  const [keyPressed, setKeyPressed] = useState(null);
+  const [multipleKeyPress, setMultipleKeyPress] = useState(false);
   //3
   useEffect(() => {
-    //4
+    // console.log(keyPressed);
+    // console.log(multipleKeyPress);
     const downHandler = (event) => {
       if (event.getModifierState("CapsLock")) {
         setState({ ...state, capslock: true });
@@ -17,14 +19,39 @@ const useKeyPress = (callback) => {
       }
       event.preventDefault();
       let { key } = event;
+
+      //handles only 1 key press
       if ((keyPressed !== key && key.length === 1) || key === "Backspace") {
         setKeyPressed(key);
         callback && callback(key);
       }
+
+      if (
+        (key === "Enter" || key === "Alt") &&
+        keyPressed !== key &&
+        keyPressed === null
+      ) {
+        setKeyPressed(key);
+      }
+      if (
+        ((key === "Enter" || key === "Alt") &&
+          keyPressed !== key &&
+          keyPressed === "Alt") ||
+        keyPressed === "Enter"
+      ) {
+        setKeyPressed([keyPressed, key]);
+        setMultipleKeyPress(true);
+        callback && callback("ResetMacro");
+      }
     };
     //5
     const upHandler = () => {
-      setKeyPressed(null);
+      if (multipleKeyPress) {
+        setKeyPressed(keyPressed[0]);
+        setMultipleKeyPress(false);
+      } else {
+        setKeyPressed(null);
+      }
     };
 
     //6
