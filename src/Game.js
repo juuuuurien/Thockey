@@ -8,9 +8,11 @@ import { context } from "./context/context";
 
 import Words from "./components/game/WordsContainer";
 import Button from "./components/global/Button";
+import SelectComponent from "./components/game/GameModeSelect";
+
+import dayjs from "dayjs";
 
 import { VscDebugRestart } from "react-icons/vsc";
-import dayjs from "dayjs";
 
 const Game = () => {
   const [state, setState] = useContext(context);
@@ -19,18 +21,22 @@ const Game = () => {
     currentIndex: 0
   });
   const timerRef = useRef();
-  const animationTimeout = useRef();
   const stateRef = useRef();
 
   const handleResize = () => {
     // fix caret depending on window
-    if (!state.finished) {
-      let caret = document.querySelector(".caret");
-      let charWinPosition = Array.from(document.querySelectorAll(".character"))[
-        gameState.currentIndex
-      ].getBoundingClientRect();
+
+    let caret = document.querySelector(".caret");
+    let char = Array.from(document.querySelectorAll(".character"))[
+      gameState.currentIndex
+    ];
+
+    if (char !== undefined) {
+      let charWinPosition = char.getBoundingClientRect();
       caret.style.top = charWinPosition.top.toString() + "px";
       caret.style.left = charWinPosition.left.toString() + "px";
+    } else {
+      return;
     }
   };
 
@@ -106,6 +112,7 @@ const Game = () => {
     };
 
     if (!sentence) init();
+
     window.onresize = handleResize;
   }, [gameState.sentence]);
 
@@ -113,8 +120,8 @@ const Game = () => {
     let { sentence } = gameState;
     let timeStart = dayjs();
     const frameRate = 500;
-    let wpmData = [];
-    let msElapsedData = [];
+    let wpmData = [0];
+    let msElapsedData = [0];
 
     const timer = setInterval(() => {
       let wordArr = sentence.string.split(" ");
@@ -139,7 +146,7 @@ const Game = () => {
         let _wpm = Math.ceil((right * 60 * 1000) / msElapsed);
 
         wpmData.push(_wpm);
-        msElapsedData.push(Math.floor(msElapsed));
+        msElapsedData.push(Math.floor(msElapsed / 10) * 10);
 
         setState({
           ...stateRef.current,
@@ -338,6 +345,7 @@ const Game = () => {
         )}
         <Words gameState={gameState} />
         <div id="reset-label">
+          <SelectComponent />
           <span id="key">alt</span> + <span id="key">enter</span> to reset
         </div>
       </div>
