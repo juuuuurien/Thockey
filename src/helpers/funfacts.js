@@ -11,7 +11,7 @@ export const funfacts = [
   "Koji Kondo is one of the most famous video game composers for his work on all the previous Legend of Zelda games. However, Breath of the Wild is the first Zelda game title without his work.",
   "Satoru Iwata was the fourth president and CEO of Nintendo and passed away in 2015. In The Legend of Zelda Breath of the Wild, not only is Satori Mountain named after him, but the developers designed this mountaintop to be one of the most beautiful areas in the game.",
   "It is known that Breath of the Wild's Hyrule is insanely large, and in comparison to Twilight Princess' Hyrule, it is actually 12 times larger.",
-  "In The Legend of Zelda Ocarina of Time, there is a glitch that allows the Link to warp directly from the Great Deku Tree to escaping Ganon's castle, allowing you to beat the game in under 25 minutes.",
+  "In The Legend of Zelda Ocarina of Time, there is a glitch that allows Link to warp directly from the Great Deku Tree to escaping Ganon's castle, allowing you to beat the game in under 25 minutes.",
   "The overworld theme for World 3 of Super Mario Bros. 3 is actually the predecessor to the Great Fairy Fountain theme from The Legend of Zelda.",
-  "In the Legend of Zelda Wind Waker, there is concept art of an adult Link in various action poses. This could suggest Link's age was supposed to change throughout the game similar to Ocarina of Time. ",
+  "In the Legend of Zelda Wind Waker, there is concept art of an adult Link in various action poses. This could suggest Link's age was supposed to change throughout the game similar to Ocarina of Time. "
 ];

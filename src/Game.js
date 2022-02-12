@@ -108,9 +108,9 @@ const Game = () => {
   const startGame = () => {
     let { sentence } = gameState;
     let timeStart = dayjs();
-    const frameRate = 500;
-    let wpmData = [0];
-    let msElapsedData = [0];
+    const frameRate = 1000;
+    let wpmData = [];
+    let msElapsedData = [];
 
     const timer = setInterval(() => {
       let wordArr = sentence.string.split(" ");
@@ -134,8 +134,10 @@ const Game = () => {
 
         let _wpm = Math.ceil((right * 60 * 1000) / msElapsed);
 
-        wpmData.push(_wpm);
-        msElapsedData.push(Math.floor(msElapsed / 10) * 10);
+        if (msElapsed > 1000) {
+          wpmData.push(_wpm);
+          msElapsedData.push(Math.floor(msElapsed / 10) * 10);
+        }
 
         setState({
           ...stateRef.current,
