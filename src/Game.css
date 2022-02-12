@@ -22,8 +22,20 @@
   width: 650px;
 }
 
+.restart.button {
+  margin-bottom: 0rem;
+  margin-top: 0rem;
+}
+
 .button-container {
   float: right;
+  transition: all 200ms ease;
+}
+
+.button-container.disabled {
+  pointer-events: none;
+  opacity: 0;
+  transition: all 200ms ease;
 }
 
 #reset-label {

@@ -2,13 +2,16 @@ import "./App.css";
 import "./Game.css";
 import { useContext, useEffect, useState, useRef } from "react";
 import useKeyPress from "./hooks/useKeyPress";
+
 import { generateSentence } from "./helpers/generateSentence";
 import { spanify } from "./helpers/spanify";
+import { handleResize } from "./helpers/handleResize";
+
 import { context } from "./context/context";
 
 import Words from "./components/game/WordsContainer";
 import Button from "./components/global/Button";
-import SelectComponent from "./components/game/GameModeSelect";
+import GameModeSelector from "./components/game/GameModeSelector";
 
 import dayjs from "dayjs";
 
@@ -16,29 +19,14 @@ import { VscDebugRestart } from "react-icons/vsc";
 
 const Game = () => {
   const [state, setState] = useContext(context);
+
   const [gameState, setGameState] = useState({
+    gamemode: "default",
     sentence: undefined,
     currentIndex: 0
   });
   const timerRef = useRef();
   const stateRef = useRef();
-
-  const handleResize = () => {
-    // fix caret depending on window
-
-    let caret = document.querySelector(".caret");
-    let char = Array.from(document.querySelectorAll(".character"))[
-      gameState.currentIndex
-    ];
-
-    if (char !== undefined) {
-      let charWinPosition = char.getBoundingClientRect();
-      caret.style.top = charWinPosition.top.toString() + "px";
-      caret.style.left = charWinPosition.left.toString() + "px";
-    } else {
-      return;
-    }
-  };
 
   const calculateAccuracy = () => {
     const wrongCount = Array.from(document.querySelectorAll(".wrong")).length;
@@ -92,11 +80,12 @@ const Game = () => {
   };
 
   useEffect(() => {
+    console.log(gameState);
     stateRef.current = state;
     let { sentence } = gameState;
 
     const init = async () => {
-      const s = generateSentence(state.numWords);
+      const s = generateSentence(state.numWords, gameState.gamemode);
       const [spans, string] = await spanify(s);
 
       if (!sentence)
@@ -113,8 +102,8 @@ const Game = () => {
 
     if (!sentence) init();
 
-    window.onresize = handleResize;
-  }, [gameState.sentence]);
+    window.onresize = handleResize(gameState);
+  }, [gameState.sentence, gameState.gamemode]);
 
   const startGame = () => {
     let { sentence } = gameState;
@@ -308,30 +297,38 @@ const Game = () => {
               handleReset(state.numWords);
             }}
           />
-          <Button
-            onClick={() => {
-              handleReset(5);
-            }}
-            className={state.numWords === 15 ? "selected" : "button"}
+          <div
+            className={
+              gameState.gamemode === "default"
+                ? "button-container"
+                : "button-container disabled"
+            }
           >
-            15
-          </Button>
-          <Button
-            onClick={() => {
-              handleReset(25);
-            }}
-            className={state.numWords === 25 ? "selected" : "button"}
-          >
-            25
-          </Button>
-          <Button
-            onClick={() => {
-              handleReset(50);
-            }}
-            className={state.numWords === 50 ? "selected" : "button"}
-          >
-            50
-          </Button>
+            <Button
+              onClick={() => {
+                handleReset(15);
+              }}
+              className={state.numWords === 15 ? "selected" : "button"}
+            >
+              15
+            </Button>
+            <Button
+              onClick={() => {
+                handleReset(25);
+              }}
+              className={state.numWords === 25 ? "selected" : "button"}
+            >
+              25
+            </Button>
+            <Button
+              onClick={() => {
+                handleReset(50);
+              }}
+              className={state.numWords === 50 ? "selected" : "button"}
+            >
+              50
+            </Button>
+          </div>
         </div>
       </div>
       <div className="words-content-container">
@@ -345,7 +342,7 @@ const Game = () => {
         )}
         <Words gameState={gameState} />
         <div id="reset-label">
-          <SelectComponent />
+          <GameModeSelector gameState={gameState} setGameState={setGameState} />
           <span id="key">alt</span> + <span id="key">enter</span> to reset
         </div>
       </div>

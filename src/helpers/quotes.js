@@ -1,4 +1,4 @@
-const gameQuotes = [
+export const gameQuotes = [
   {
     author: `Brandon "Homemade Waffles" Collier`,
     quotes: [
