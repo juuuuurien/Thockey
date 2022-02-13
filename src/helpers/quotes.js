@@ -24,8 +24,8 @@ export const gameQuotes = [
   {
     author: "Andrew Ryan",
     quotes: [
-      " I chose the impossible. I chose...Rapture, a city where the artist would not fear the censor, where the scientist would not be bound by petty morality, Where the great would not be constrained by the small! And with the sweat of your brow, Rapture can become your city as well.",
-      "I am Andrew Ryan, and I'm here to ask you a question. Is a man not entitled to the sweat of his brow? 'No!' says the man in Washington, 'It belongs to the poor.'",
+      " Rapture, a city where the artist would not fear the censor, where the scientist would not be bound by petty morality, Where the great would not be constrained by the small! And with the sweat of your brow, Rapture can become your city as well.",
+      "Is a man not entitled to the sweat of his brow? No, says the man in Washington, it belongs to the poor. No, says the man in the Vatican, it belongs to God. No, says the man in Moscow, it belongs to everyone. I rejected those answers. Instead I chose something different. I chose the impossible. I chose... Rapture.'",
       "We all make choices in life, but in the end our choices make us."
     ]
   },

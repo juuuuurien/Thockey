@@ -48,6 +48,10 @@ body {
   -o-user-select: none;
 }
 
+.big.character {
+  font-size: 1.4rem;
+}
+
 .ThockeyLogo {
   color: #2654b8;
   width: 50%;
@@ -125,10 +129,10 @@ body {
 
 .words-container {
   background-color: #1324b857;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 0.5rem;
   text-align: left;
-  line-height: 2rem;
+  line-height: 2.5rem;
   border: 1px solid rgb(1, 7, 70);
   overflow: hidden;
   transition: all 100ms ease-in;

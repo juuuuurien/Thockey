@@ -86,7 +86,7 @@ const Game = () => {
 
     const init = async () => {
       const s = generateSentence(state.numWords, gameState.gamemode);
-      const [spans, string] = await spanify(s);
+      const [spans, string] = await spanify(s, gameState.gamemode);
 
       if (!sentence)
         setGameState({
