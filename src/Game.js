@@ -16,6 +16,7 @@ import GameModeSelector from "./components/game/GameModeSelector";
 import dayjs from "dayjs";
 
 import { VscDebugRestart } from "react-icons/vsc";
+import ResetLabel from "./components/game/ResetLabel";
 
 const Game = () => {
   const [state, setState] = useContext(context);
@@ -80,7 +81,6 @@ const Game = () => {
   };
 
   useEffect(() => {
-    console.log(gameState);
     stateRef.current = state;
     let { sentence } = gameState;
 
@@ -186,10 +186,8 @@ const Game = () => {
   };
 
   const updateCharacterStyle = async (key, currentChar) => {
-    updateCaret();
     let { sentence, currentIndex } = gameState;
     let sent = Array.from(document.querySelectorAll(".character"));
-
     let char = sent[currentIndex];
     const prevChar = sent[currentIndex - 1];
     let type;
@@ -343,9 +341,9 @@ const Game = () => {
           </div>
         )}
         <Words gameState={gameState} />
-        <div id="reset-label">
+        <div className="words-bottom-container">
           <GameModeSelector gameState={gameState} setGameState={setGameState} />
-          <span id="key">alt</span> + <span id="key">enter</span> to reset
+          <ResetLabel />
         </div>
       </div>
       <div className="content-container" />

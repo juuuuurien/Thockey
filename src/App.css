@@ -1,6 +1,10 @@
 .App {
   text-align: center;
 }
+body {
+  background-color: #000108;
+  overflow: hidden;
+}
 
 .capslock {
   color: rgb(189, 87, 83);
@@ -8,7 +12,7 @@
   margin: auto;
   padding: 1rem;
   width: 750px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Source Code Pro", monospace;
 }
 
 .right.character {
@@ -128,11 +132,6 @@
   border: 1px solid rgb(1, 7, 70);
   overflow: hidden;
   transition: all 100ms ease-in;
-}
-
-body {
-  background-color: #000108;
-  overflow: hidden;
 }
 
 .blink {
