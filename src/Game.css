@@ -121,7 +121,7 @@ ul {
 }
 
 .author-fade-in {
-  animation: fadeInAnimation 500ms ease-in;
+  animation: fadeInAnimation 300ms ease-in;
 }
 
 @keyframes fadeInAnimation {

@@ -35,7 +35,7 @@ export const finishAnimation = (state, setState, gamemode) => {
         return clearTimeout(timer2);
       }, 400);
       return clearTimeout(timer1);
-    }, 100);
+    }, 400);
   };
 
   switch (gamemode) {

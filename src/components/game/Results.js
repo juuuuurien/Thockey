@@ -8,7 +8,7 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Legend,
+  Legend
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -18,33 +18,32 @@ ChartJS.register(
   PointElement,
   LineElement,
   Title,
-  Tooltip,
-  Legend
+  Tooltip
 );
 
 export const options = {
   responsive: true,
   plugins: {
     title: {
-      display: false,
-    },
+      display: false
+    }
   },
   scales: {
     x: {
       display: true,
       title: {
         display: true,
-        text: "Time in milliseconds",
-      },
+        text: "Time in milliseconds"
+      }
     },
     y: {
       display: true,
       title: {
         display: true,
-        text: "Words per Minute",
-      },
-    },
-  },
+        text: "Words per Minute"
+      }
+    }
+  }
 };
 
 const Results = ({ gameState }) => {
@@ -56,12 +55,12 @@ const Results = ({ gameState }) => {
     labels,
     datasets: [
       {
-        label: "Number of Words Typed vs Time",
+        label: "Avaerage Words per Minute vs Time",
         data: state.wpmData,
         borderColor: "rgb(227, 237, 255, 0.5)",
-        backgroundColor: "rgb(227, 237, 255)",
-      },
-    ],
+        backgroundColor: "rgb(227, 237, 255)"
+      }
+    ]
   };
 
   return (

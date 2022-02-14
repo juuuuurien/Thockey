@@ -2,9 +2,9 @@ export const gameQuotes = [
   {
     author: `Brandon "Homemade Waffles" Collier`,
     quotes: [
-      "That upsmash. Oh Zhu- poor Zhu. Happy feet. Wombo combo. That ain't Falco. That ain't falc-oh. OH! OOH! OOOOH! OOOH! OOOH! OOOH! WHERE ARE YOU AT?! WHERE ARE YOU AT?! WHERE ARE YOU AT?! WHERE ARE YOU AT?! OOOHH. OH MY GOD. WOMBO COMBO. GET YO ASS WOOPED",
+      "That upsmash. Oh Zhu- poor Zhu. Happy feet. Wombo combo. That ain't Falco. That ain't falc-oh. OH! OOH! OOOOH! OOOH! OOOH! OOOH! WHERE ARE YOU AT?! WHERE ARE YOU AT?! WHERE ARE YOU AT?! WHERE ARE YOU AT?! OOOHH. OH MY GOD. WOMBO COMBO. GET YO ASS WOOPED.",
       "Peter's talking about how bad Hungrybox is; how he should never play the game again. *Hungrybox misses a rest* Mango, MANGO. That's disrespectful to everyone: to Hungrybox, to me, to you! That was just disrespectful.",
-      "Mango's playing fucking amazing. I really don't see Taj beating him. Unplug your controller dawg, unplug your controller! Forfeit my *****, he forfeits!"
+      "Mango's playing fucking amazing. I really don't see Taj beating him. Unplug your controller dawg, unplug your controller! Forfeit my (brother). He forfeits!"
     ]
   },
   {
@@ -32,7 +32,7 @@ export const gameQuotes = [
   {
     author: "G-Man",
     quotes: [
-      "Rise and shine, Mr. Freeman. Rise and shine. Not that I wish to imply you have been sleeping on the job. Let's just say your hour has come again. The right man in the wrong place can make all the difference in the world. So, wake up, Mr. Freeman. Wake up and smell the ashes"
+      "Rise and shine, Mr. Freeman. Rise and shine. Not that I wish to imply you have been sleeping on the job. Let's just say your hour has come again. The right man in the wrong place can make all the difference in the world. So, wake up, Mr. Freeman. Wake up and smell the ashes."
     ]
   },
   {
