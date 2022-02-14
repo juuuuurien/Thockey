@@ -1,21 +1,33 @@
-const GameModeSelector = ({ gameState, setGameState }) => {
+import { useContext } from "react";
+import { context } from "../../context/context";
+
+const GameModeSelector = ({ gameState, setGameState, handleReset }) => {
+  const [state, setState] = useContext(context);
+
   const handleChange = (type) => {
     switch (type) {
       case "quotes": {
-        setGameState({ ...gameState, sentence: undefined, gamemode: "quotes" });
+        handleReset(state.numWords);
+        setGameState({
+          currentIndex: 0,
+          sentence: undefined,
+          gamemode: "quotes"
+        });
         break;
       }
       case "funfacts": {
+        handleReset(state.numWords);
         setGameState({
-          ...gameState,
+          currentIndex: 0,
           sentence: undefined,
           gamemode: "funfacts"
         });
         break;
       }
       default: {
+        handleReset(state.numWords);
         setGameState({
-          ...gameState,
+          currentIndex: 0,
           sentence: undefined,
           gamemode: "default"
         });

@@ -53,8 +53,6 @@
   display: flex;
   flex-direction: row;
   font-size: 0.75rem;
-  float: right;
-  margin: 0.5rem 0;
   align-items: center;
   font-weight: 600;
 }
@@ -125,9 +123,7 @@ ul {
     opacity: 1;
   }
 }
-.words-bottom-container {
-  margin: 0.5rem 0rem;
+
+#select {
   float: right;
-  display: inline-flex;
-  flex-direction: column;
 }

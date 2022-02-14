@@ -261,7 +261,6 @@ const Game = () => {
   const handleReset = (words) => {
     // fade animation to reset canvas.
     // clear timer, reset all state to default.
-
     setGameState({ ...gameState, sentence: undefined, currentIndex: 0 });
 
     setState({
@@ -341,10 +340,12 @@ const Game = () => {
           </div>
         )}
         <Words gameState={gameState} />
-        <div className="words-bottom-container">
-          <GameModeSelector gameState={gameState} setGameState={setGameState} />
-          <ResetLabel />
-        </div>
+        <GameModeSelector
+          gameState={gameState}
+          setGameState={setGameState}
+          handleReset={handleReset}
+        />
+        <ResetLabel />
       </div>
       <div className="content-container" />
     </div>

@@ -129,6 +129,7 @@ body {
 
 .words-container {
   background-color: #1324b857;
+  margin: 0.5rem 0rem;
   padding: 2rem;
   border-radius: 0.5rem;
   text-align: left;
