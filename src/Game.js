@@ -17,6 +17,8 @@ import dayjs from "dayjs";
 
 import { VscDebugRestart } from "react-icons/vsc";
 import ResetLabel from "./components/game/ResetLabel";
+import { finishAnimation } from "./helpers/finishAnimation";
+import { generateQuotes } from "./helpers/generateQuotes";
 
 const Game = () => {
   const [state, setState] = useContext(context);
@@ -28,14 +30,6 @@ const Game = () => {
   });
   const timerRef = useRef();
   const stateRef = useRef();
-
-  const calculateAccuracy = () => {
-    const wrongCount = Array.from(document.querySelectorAll(".wrong")).length;
-    const charCount = Array.from(document.querySelectorAll(".character"))
-      .length;
-
-    return Math.ceil(((charCount - wrongCount) / charCount) * 100 * 10) / 10;
-  };
 
   const handleFinished = () => {
     clearInterval(timerRef.current);
@@ -64,20 +58,7 @@ const Game = () => {
       });
     }
     //trigger fade animations
-    const timer1 = setTimeout(() => {
-      setState({ ...state, setting: true, caretHidden: true });
-      const timer2 = setTimeout(() => {
-        setState({
-          ...state,
-          setting: false,
-          finished: true,
-          caretHidden: true,
-          accuracy: calculateAccuracy()
-        });
-        return clearTimeout(timer2);
-      }, 150);
-      return clearTimeout(timer1);
-    }, 600);
+    finishAnimation(state, setState, gameState.gamemode);
   };
 
   useEffect(() => {
@@ -85,14 +66,31 @@ const Game = () => {
     let { sentence } = gameState;
 
     const init = async () => {
-      const s = generateSentence(state.numWords, gameState.gamemode);
+      let s;
+      let a;
+      if (gameState.gamemode === "quotes") {
+        const [sentence, author] = generateQuotes();
+        s = sentence;
+        a = author;
+      } else {
+        s = generateSentence(state.numWords, gameState.gamemode);
+      }
       const [spans, string] = await spanify(s, gameState.gamemode);
 
-      if (!sentence)
-        setGameState({
-          ...gameState,
-          sentence: { spans: spans, string: string }
-        });
+      if (!sentence) {
+        if (gameState.gamemode === "quotes") {
+          console.log("SETTING FROM SENTCEN");
+          setGameState({
+            ...gameState,
+            sentence: { spans: spans, string: string, author: a }
+          });
+        } else {
+          setGameState({
+            ...gameState,
+            sentence: { spans: spans, string: string }
+          });
+        }
+      }
 
       if (sentence && !state.started) {
         let caret = document.querySelector(".caret");

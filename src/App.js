@@ -16,8 +16,9 @@ function App() {
     accuracy: 0,
     setting: false,
     caretHidden: false,
+    quoteFinished: false,
     wpmData: [],
-    msElapsedData: [],
+    msElapsedData: []
   });
 
   return (

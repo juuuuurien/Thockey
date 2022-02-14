@@ -8,6 +8,11 @@
   font-size: 2rem;
 }
 
+.author {
+  font-size: 1.5rem;
+  float: right;
+}
+
 .header {
   display: flex;
   flex: 1;
@@ -113,6 +118,10 @@ ul {
 
 .fade-in {
   animation: fadeInAnimation 150ms ease;
+}
+
+.author-fade-in {
+  animation: fadeInAnimation 500ms ease-in;
 }
 
 @keyframes fadeInAnimation {

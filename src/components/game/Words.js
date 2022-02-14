@@ -18,11 +18,25 @@ const Words = ({ gameState }) => {
         {gameState.gamemode === "quotes" && (
           <span className="quote-wrapper">{`" `}</span>
         )}
+        {/* -- ACTUAL SPANS -- */}
         {gameState.sentence && gameState.sentence.spans}
-
+        {/* -- ACTUAL SPANS -- */}
         {gameState.gamemode === "quotes" && (
           <span className="quote-wrapper">{` "`}</span>
         )}
+        {
+          <div
+            className={
+              state.quoteFinished
+                ? "quote-wrapper author author-fade-in"
+                : "quote-wrapper author fade-out"
+            }
+          >
+            {gameState.sentence &&
+              gameState.gamemode === "quotes" &&
+              ` - ${gameState.sentence.author}`}
+          </div>
+        }
       </div>
     </div>
   );

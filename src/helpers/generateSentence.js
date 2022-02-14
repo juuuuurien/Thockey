@@ -6,14 +6,9 @@ import { funfacts } from "./funfacts";
 export const generateSentence = (wordcount, gamemode) => {
   //going to return a string
   let s = "";
+  let a;
 
   switch (gamemode) {
-    case "quotes": {
-      let r = Math.floor(Math.random() * gameQuotes.length);
-      let q = gameQuotes[r];
-      s = q.quotes[Math.floor(Math.random() * q.quotes.length)];
-      break;
-    }
     case "funfacts": {
       let r = Math.floor(Math.random() * funfacts.length);
       s = funfacts[r];
