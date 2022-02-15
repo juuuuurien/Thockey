@@ -71,9 +71,9 @@ const Canvas = (props) => {
       gradStop = 0;
     }
 
-    gradient.addColorStop(0, "#061d54"); // lighter blue
-    gradient.addColorStop(gradStop, "rgb(4,9,31,0.4)");
-    gradient.addColorStop(0.75, "rgb(0,0,0,0)");
+    // gradient.addColorStop(0, "#061d54"); // lighter blue
+    // gradient.addColorStop(gradStop, "rgb(4,9,31,0.4)");
+    // gradient.addColorStop(0.75, "rgb(0,0,0,0)");
     // let stars = generateStars();
     // console.log(stars);
 

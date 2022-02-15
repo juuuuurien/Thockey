@@ -9,6 +9,7 @@
 }
 
 .author {
+  font-weight: bolder;
   font-size: 1.5rem;
   float: right;
 }

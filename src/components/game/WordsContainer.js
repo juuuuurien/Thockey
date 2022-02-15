@@ -10,7 +10,9 @@ const WordsContainer = ({ gameState }) => {
 
   return (
     <div className="words-container">
-      <div className={state.caretHidden ? "caret fade-out" : "caret"} />
+      <div style={{ position: "sticky" }}>
+        <div className={state.caretHidden ? "caret fade-out" : "caret"} />
+      </div>
       {!state.finished ? <Words gameState={gameState} /> : <Results />}
     </div>
   );

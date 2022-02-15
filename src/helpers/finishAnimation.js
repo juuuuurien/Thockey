@@ -19,7 +19,7 @@ export const finishAnimation = (state, setState, gamemode) => {
           setting: false,
           finished: true,
           caretHidden: true,
-          accuracy: calculateAccuracy()
+          accuracy: calculateAccuracy(),
         });
         return clearTimeout(timer2);
       }, 150);
@@ -33,7 +33,7 @@ export const finishAnimation = (state, setState, gamemode) => {
       const timer2 = setTimeout(() => {
         defaultFinish();
         return clearTimeout(timer2);
-      }, 400);
+      }, 800);
       return clearTimeout(timer1);
     }, 400);
   };

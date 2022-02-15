@@ -16,13 +16,13 @@ const Words = ({ gameState }) => {
           <div className="fact-prefix">Did you know -</div>
         )}
         {gameState.gamemode === "quotes" && (
-          <span className="quote-wrapper">{`" `}</span>
+          <span className="quote-wrapper">{`“ `}</span>
         )}
         {/* -- ACTUAL SPANS -- */}
         {gameState.sentence && gameState.sentence.spans}
         {/* -- ACTUAL SPANS -- */}
         {gameState.gamemode === "quotes" && (
-          <span className="quote-wrapper">{` "`}</span>
+          <span className="quote-wrapper">{` ”`}</span>
         )}
         {
           <div
