@@ -4,10 +4,18 @@ html {
 }
 
 body {
-  height: 120vh;
+  height: 100vh;
+  width: 100vw;
+  background-attachment: fixed;
   background-color: #000108;
-  background-image: linear-gradient(#000000, rgb(4, 9, 31, 0.4) 55%, #061d54);
-  overflow: hidden;
+  background-image: linear-gradient(#000000, rgb(4, 9, 31, 0.4) 65%, #061d54);
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 .capslock {

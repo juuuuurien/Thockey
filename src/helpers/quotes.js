@@ -89,4 +89,16 @@ export const gameQuotes = [
       "If you don't understand, then make use of your remaining life to think about what it means for a person to live. That's my final lesson to you as a teacher. Now go. Do as your teacher says.",
     ],
   },
+  {
+    author: "Shadow, 'Sonic Adventure 2 Battle'",
+    quotes: [
+      "Faker? I think you're the fake hedgehog around here. You're comparing yourself to me? Ha! You're not even good enough to be my fake!",
+    ],
+  },
+  {
+    author: "Happy Mask Salesman, 'Majora's Mask'",
+    quotes: [
+      "Whenever there is a meeting, a parting is sure to follow. However, that parting need not last forever. Whether a parting is forever or merely for a short time, that is up to you.",
+    ],
+  },
 ];

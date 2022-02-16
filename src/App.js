@@ -18,14 +18,20 @@ function App() {
     caretHidden: false,
     quoteFinished: false,
     wpmData: [],
-    msElapsedData: []
+    msElapsedData: [],
   });
+
+  const Container = ({ children }) => {
+    return <div className="container">{children}</div>;
+  };
 
   return (
     <Provider value={[state, setState]}>
-      <StarryBackground className="background" />
-      <ThockeyLogo />
-      <Game />
+      <div className="container">
+        <StarryBackground className="background" />
+        <ThockeyLogo />
+        <Game />
+      </div>
     </Provider>
   );
 }

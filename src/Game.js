@@ -5,7 +5,6 @@ import useKeyPress from "./hooks/useKeyPress";
 
 import { generateSentence } from "./helpers/generateSentence";
 import { spanify } from "./helpers/spanify";
-import { handleResize } from "./helpers/handleResize";
 
 import { context } from "./context/context";
 
@@ -26,7 +25,7 @@ const Game = () => {
   const [gameState, setGameState] = useState({
     gamemode: "default",
     sentence: undefined,
-    currentIndex: 0
+    currentIndex: 0,
   });
   const timerRef = useRef();
   const stateRef = useRef();
@@ -54,11 +53,27 @@ const Game = () => {
 
       setState({
         ...state,
-        wpm: _wpm
+        wpm: _wpm,
       });
     }
     //trigger fade animations
     finishAnimation(state, setState, gameState.gamemode);
+  };
+
+  const handleResize = () => {
+    // fix caret depending on window
+    let caret = document.querySelector(".caret");
+    let char = Array.from(document.querySelectorAll(".character"))[
+      gameState.currentIndex
+    ];
+
+    if (char !== undefined) {
+      let charWinPosition = char.getBoundingClientRect();
+      caret.style.top = charWinPosition.top.toString() + "px";
+      caret.style.left = charWinPosition.left.toString() + "px";
+    } else {
+      return;
+    }
   };
 
   useEffect(() => {
@@ -78,20 +93,21 @@ const Game = () => {
       const [spans, string] = await spanify(s, gameState.gamemode);
 
       if (!sentence) {
+        //set sentence state depending on gamemode
         if (gameState.gamemode === "quotes") {
-          console.log("SETTING FROM SENTCEN");
           setGameState({
             ...gameState,
-            sentence: { spans: spans, string: string, author: a }
+            sentence: { spans: spans, string: string, author: a },
           });
         } else {
           setGameState({
             ...gameState,
-            sentence: { spans: spans, string: string }
+            sentence: { spans: spans, string: string },
           });
         }
       }
 
+      // if game isn't started, set a blinking animation for the caret
       if (sentence && !state.started) {
         let caret = document.querySelector(".caret");
         caret.classList.add("blink");
@@ -100,13 +116,13 @@ const Game = () => {
 
     if (!sentence) init();
 
-    window.onresize = handleResize(gameState);
+    window.onresize = handleResize;
   }, [gameState.sentence, gameState.gamemode]);
 
   const startGame = () => {
     let { sentence } = gameState;
     let timeStart = dayjs();
-    const frameRate = 1000;
+    const frameRate = 250;
     let wpmData = [];
     let msElapsedData = [];
 
@@ -143,7 +159,7 @@ const Game = () => {
           wpm: _wpm,
           msElapsed: msElapsed,
           wpmData: wpmData,
-          msElapsedData: msElapsedData
+          msElapsedData: msElapsedData,
         });
       }
     }, frameRate);
@@ -273,7 +289,7 @@ const Game = () => {
       setting: false,
       caretHidden: false,
       wpmData: [],
-      msElapsedData: []
+      msElapsedData: [],
     });
 
     document.querySelector(".caret").classList.remove("hidden");
