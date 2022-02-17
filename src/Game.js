@@ -21,7 +21,6 @@ import { generateQuotes } from "./helpers/generateQuotes";
 
 const Game = () => {
   const [state, setState] = useContext(context);
-
   const [gameState, setGameState] = useState({
     gamemode: "default",
     sentence: undefined,
@@ -106,13 +105,9 @@ const Game = () => {
           });
         }
       }
-
-      // if game isn't started, set a blinking animation for the caret
-      if (sentence && !state.started) {
-        let caret = document.querySelector(".caret");
-        caret.classList.add("blink");
-      }
     };
+
+    // if game isn't started, set a blinking animation for the caret
 
     if (!sentence) init();
 
@@ -122,11 +117,12 @@ const Game = () => {
   const startGame = () => {
     let { sentence } = gameState;
     let timeStart = dayjs();
-    const frameRate = 250;
+    const frameRate = 500;
     let wpmData = [];
     let msElapsedData = [];
 
     const timer = setInterval(() => {
+      console.log("interval!!!");
       let wordArr = sentence.string.split(" ");
 
       let timeNow = dayjs();
@@ -176,7 +172,8 @@ const Game = () => {
         //get correct node, move position accordingly
         if (currentIndex < sentence.spans.length) {
           let char = sent[currentIndex].getBoundingClientRect();
-          caret.style.top = char.top.toString() + "px";
+          let charTop = char.top + window.scrollY;
+          caret.style.top = charTop.toString() + "px";
           caret.style.left = (char.left + char.width).toString() + "px";
         }
         return;
@@ -184,11 +181,13 @@ const Game = () => {
       case "back": {
         if (sent[currentIndex - 2]) {
           let char = sent[currentIndex - 2].getBoundingClientRect();
-          caret.style.top = char.top.toString() + "px";
+          let charTop = char.top + window.scrollY;
+          caret.style.top = charTop.toString() + "px";
           caret.style.left = (char.left + char.width).toString() + "px";
         } else {
           let char = sent[0].getBoundingClientRect();
-          caret.style.top = char.top.toString() + "px";
+          let charTop = char.top + window.scrollY;
+          caret.style.top = charTop.toString() + "px";
           caret.style.left = char.left.toString() + "px";
         }
 
@@ -292,9 +291,6 @@ const Game = () => {
       msElapsedData: [],
     });
 
-    document.querySelector(".caret").classList.remove("hidden");
-    document.querySelector(".caret").style.left = null;
-    document.querySelector(".caret").style.top = null;
     clearInterval(timerRef.current);
   };
 
@@ -353,7 +349,7 @@ const Game = () => {
             </span>
           </div>
         )}
-        <Words gameState={gameState} />
+        {gameState.sentence && <Words gameState={gameState} />}
         <GameModeSelector
           gameState={gameState}
           setGameState={setGameState}

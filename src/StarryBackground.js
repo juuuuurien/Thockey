@@ -60,22 +60,6 @@ const Canvas = (props) => {
     context.canvas.width = window.innerWidth;
     context.canvas.height = window.innerHeight;
     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    let gradSpeed = ((state.wpm - 30) * 0.003 * state.msElapsed) / 1000;
-    const gradient = context.createLinearGradient(0, window.innerHeight, 0, 0);
-
-    let gradStop = 0.15;
-    // gradient.addColorStop(0, "#08091f");
-    if (gradStop - gradSpeed / 30 > 0) {
-      gradStop = gradStop - gradSpeed / 30;
-    } else {
-      gradStop = 0;
-    }
-
-    // gradient.addColorStop(0, "#061d54"); // lighter blue
-    // gradient.addColorStop(gradStop, "rgb(4,9,31,0.4)");
-    // gradient.addColorStop(0.75, "rgb(0,0,0,0)");
-    // let stars = generateStars();
-    // console.log(stars);
 
     stars.forEach((star) => {
       let _speed =
@@ -93,8 +77,6 @@ const Canvas = (props) => {
       );
     });
 
-    context.fillStyle = gradient;
-    context.fillRect(0, 0, window.innerWidth, window.innerHeight);
     // console.log(stars);
   });
 

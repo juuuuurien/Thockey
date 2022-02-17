@@ -1,19 +1,24 @@
 html {
   /* this makes sure the padding and the border is included in the box sizing */
-  box-sizing: border-box;
+  margin: 0;
+  overflow: overlay;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-attachment: fixed;
   background-color: #000108;
-  background-image: linear-gradient(#000000, rgb(4, 9, 31, 0.4) 65%, #061d54);
+  background-image: linear-gradient(#000000, rgb(4, 9, 31) 70%, #061d54);
 }
 
 .container {
   height: 100%;
   width: 100%;
+  padding-top: 4rem;
+  padding-bottom: 16rem;
   align-items: center;
   justify-content: center;
 }
@@ -34,10 +39,10 @@ body {
 }
 
 .caret {
-  height: 30px;
+  position: absolute;
+  height: 32px;
   width: 3px;
   background-color: white;
-  position: fixed;
   transition: 130ms ease;
   line-height: 2.5rem;
   transform: translateX(-3.5px);
@@ -83,23 +88,8 @@ body {
 }
 
 .background {
-  position: absolute;
+  position: fixed;
   z-index: -1;
-}
-
-.smallStar {
-  position: absolute;
-  background-color: white;
-  animation: smallRise 5s linear infinite;
-}
-
-@keyframes smallRise {
-  from {
-    transform: translateY(-30%);
-  }
-  to {
-    transform: translateY(100%);
-  }
 }
 
 .button {

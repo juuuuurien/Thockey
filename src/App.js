@@ -27,8 +27,8 @@ function App() {
 
   return (
     <Provider value={[state, setState]}>
+      <StarryBackground className="background" />
       <div className="container">
-        <StarryBackground className="background" />
         <ThockeyLogo />
         <Game />
       </div>
