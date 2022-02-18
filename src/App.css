@@ -41,7 +41,7 @@ body {
 .caret {
   position: absolute;
   height: 32px;
-  width: 3px;
+  width: 2.3px;
   background-color: white;
   transition: 130ms ease;
   line-height: 2.5rem;

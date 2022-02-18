@@ -1,5 +1,6 @@
 import "./App.css";
 import "./Game.css";
+import "./css/mobile.css";
 import { useContext, useEffect, useState, useRef } from "react";
 import useKeyPress from "./hooks/useKeyPress";
 
@@ -24,7 +25,7 @@ const Game = () => {
   const [gameState, setGameState] = useState({
     gamemode: "default",
     sentence: undefined,
-    currentIndex: 0,
+    currentIndex: 0
   });
   const timerRef = useRef();
   const stateRef = useRef();
@@ -52,7 +53,7 @@ const Game = () => {
 
       setState({
         ...state,
-        wpm: _wpm,
+        wpm: _wpm
       });
     }
     //trigger fade animations
@@ -96,12 +97,12 @@ const Game = () => {
         if (gameState.gamemode === "quotes") {
           setGameState({
             ...gameState,
-            sentence: { spans: spans, string: string, author: a },
+            sentence: { spans: spans, string: string, author: a }
           });
         } else {
           setGameState({
             ...gameState,
-            sentence: { spans: spans, string: string },
+            sentence: { spans: spans, string: string }
           });
         }
       }
@@ -155,7 +156,7 @@ const Game = () => {
           wpm: _wpm,
           msElapsed: msElapsed,
           wpmData: wpmData,
-          msElapsedData: msElapsedData,
+          msElapsedData: msElapsedData
         });
       }
     }, frameRate);
@@ -288,7 +289,7 @@ const Game = () => {
       setting: false,
       caretHidden: false,
       wpmData: [],
-      msElapsedData: [],
+      msElapsedData: []
     });
 
     clearInterval(timerRef.current);
