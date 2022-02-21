@@ -29,6 +29,7 @@ const Game = () => {
   });
   const timerRef = useRef();
   const stateRef = useRef();
+  
 
   const handleFinished = () => {
     clearInterval(timerRef.current);
@@ -117,13 +118,12 @@ const Game = () => {
     window.onresize = () => {
       setState({ ...state, settingStars: true });
       timeout = setTimeout(() => {
-        console.log("hel;lo");
         handleResize();
       }, 100);
     };
 
     clearTimeout(timeout);
-  });
+  },[gameState.sentence]);
 
   const startGame = () => {
     let { sentence } = gameState;
@@ -133,7 +133,6 @@ const Game = () => {
     let msElapsedData = [];
 
     const timer = setInterval(() => {
-      console.log("interval!!!");
       let wordArr = sentence.string.split(" ");
 
       let timeNow = dayjs();
@@ -284,10 +283,9 @@ const Game = () => {
 
   const handleReset = (words) => {
     // clear timer, reset all state to default.
-    setState({ ...state, setting: true });
-    const reset = setTimeout(() => {
+    
+   
       setGameState({ ...gameState, sentence: undefined, currentIndex: 0 });
-
       setState({
         started: false,
         finished: false,
@@ -302,8 +300,7 @@ const Game = () => {
         wpmData: [],
         msElapsedData: []
       });
-      clearTimeout(reset);
-    }, 50);
+ 
 
     clearInterval(timerRef.current);
   };
@@ -363,6 +360,7 @@ const Game = () => {
             </span>
           </div>
         )}
+        {/* render sentence here VV*/}
         {gameState.sentence && <Words gameState={gameState} />}
         <GameModeSelector
           gameState={gameState}

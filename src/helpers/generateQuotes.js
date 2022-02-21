@@ -1,4 +1,4 @@
-import { gameQuotes } from "./quotes";
+import { gameQuotes } from "../public/quotes";
 
 export const generateQuotes = () => {
   //going to return a string
@@ -10,6 +10,5 @@ export const generateQuotes = () => {
   s = q.quotes[Math.floor(Math.random() * q.quotes.length)];
   a = q.author;
 
-  console.log(a);
-  return [s, a];
+  return [s.trim(), a.trim()];
 };

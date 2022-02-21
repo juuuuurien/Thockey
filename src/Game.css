@@ -119,7 +119,7 @@ ul {
 }
 
 .fade-in {
-  animation: fadeInAnimation 50ms ease;
+  animation: fadeInAnimation 150ms ease;
 }
 
 .author-fade-in {

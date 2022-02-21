@@ -1,5 +1,5 @@
-import { words } from "./words";
-import { funfacts } from "./funfacts";
+import { words } from "../public/words";
+import { funfacts } from "../public/funfacts";
 
 export const generateSentence = (wordcount, gamemode) => {
   //going to return a string

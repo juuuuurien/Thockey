@@ -7,7 +7,6 @@ export const funfacts = [
   "In Super Mario Sunshine, Il Pianticcimo, a masked human disguised as a Pianta, is an npc Mario is able to race throughout the game. Hacking the game's ingame model and removing his mask reveals he is actually the running man from Ocarina of Time and Majoras Mask!",
   "Mario's very first appearance was not in a Super Mario game, but rather the 1981 arcade platformer, Donkey Kong.",
   "Bowser from the Super Mario series was originally sketched up as an ox by creator Shigeru Miyamoto, but his drawing were misinterpreted by animator Yoichi Kotabe as a turtle.",
-  "In 1993, and after the release of the Super Mario Bros. movie, two porn films titled Super Hornio Brothers and Super Hornio Brothers II were released. Both movies starred porn legend Ron Jeremy as Mario. Nintendo bought the rights to both films and buried them to prevent further distribution.",
   "Koji Kondo is one of the most famous video game composers for his work on all the previous Legend of Zelda games. However, Breath of the Wild is the first Zelda game title without his work.",
   "Satoru Iwata was the fourth president and CEO of Nintendo and passed away in 2015. In The Legend of Zelda Breath of the Wild, not only is Satori Mountain named after him, but the developers designed this mountaintop to be one of the most beautiful areas in the game.",
   "It is known that Breath of the Wild's Hyrule is insanely large, and in comparison to Twilight Princess' Hyrule, it is actually 12 times larger.",

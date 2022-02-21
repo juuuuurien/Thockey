@@ -59,7 +59,7 @@ const Canvas = (props) => {
       stars.forEach((star) => {
         let _speed =
           star.speed +
-          (star.speed * (state.wpm * -0.007 * state.msElapsed)) / 1000;
+          (star.speed * (state.wpm * -0.009 * state.msElapsed)) / 1000;
         if (star.y < 0) star.y = window.innerHeight;
         if (star.y > window.innerHeight) star.y = 0;
         context.fillStyle = star.color;
