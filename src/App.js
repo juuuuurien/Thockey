@@ -14,6 +14,7 @@ function App() {
     msElapsed: 0,
     numWords: 25,
     accuracy: 0,
+    settingStars: false,
     setting: false,
     caretHidden: false,
     quoteFinished: false,

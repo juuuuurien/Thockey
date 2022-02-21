@@ -62,7 +62,7 @@ const Game = () => {
 
   const handleResize = () => {
     // fix caret depending on window
-    setState({ ...state, setting: true });
+
     let caret = document.querySelector(".caret");
     let char = Array.from(document.querySelectorAll(".character"))[
       gameState.currentIndex
@@ -75,8 +75,7 @@ const Game = () => {
     } else {
       return;
     }
-
-    return setState({ ...state, setting: false });
+    setState({ ...state, settingStars: false });
   };
 
   useEffect(() => {
@@ -114,8 +113,16 @@ const Game = () => {
     // if game isn't started, set a blinking animation for the caret
 
     if (!sentence) init();
+    let timeout;
+    window.onresize = () => {
+      setState({ ...state, settingStars: true });
+      timeout = setTimeout(() => {
+        console.log("hel;lo");
+        handleResize();
+      }, 100);
+    };
 
-    window.onresize = handleResize;
+    clearTimeout(timeout);
   });
 
   const startGame = () => {
@@ -289,6 +296,7 @@ const Game = () => {
         msElapsed: 0,
         numWords: words,
         accuracy: 0,
+        settingStars: false,
         setting: false,
         caretHidden: false,
         wpmData: [],

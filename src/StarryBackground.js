@@ -55,7 +55,7 @@ const Canvas = (props) => {
     context.canvas.height = window.innerHeight;
     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-    if (!state.setting) {
+    if (!state.settingStars) {
       stars.forEach((star) => {
         let _speed =
           star.speed +
@@ -72,15 +72,16 @@ const Canvas = (props) => {
         );
       });
     } else {
-      console.log("should set here");
-      setStars(generateStars());
+      setStars(generateStars);
     }
   });
 
   return (
     <canvas
       ref={canvasRef}
-      className={state.setting ? "background fade-out" : "background fade-in"}
+      className={
+        state.settingStars ? "background fade-out" : "background fade-in"
+      }
     />
   );
 };
