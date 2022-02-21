@@ -62,6 +62,7 @@ const Game = () => {
 
   const handleResize = () => {
     // fix caret depending on window
+    setState({ ...state, setting: true });
     let caret = document.querySelector(".caret");
     let char = Array.from(document.querySelectorAll(".character"))[
       gameState.currentIndex
@@ -74,6 +75,8 @@ const Game = () => {
     } else {
       return;
     }
+
+    return setState({ ...state, setting: false });
   };
 
   useEffect(() => {
@@ -113,7 +116,7 @@ const Game = () => {
     if (!sentence) init();
 
     window.onresize = handleResize;
-  }, [gameState.sentence, gameState.gamemode]);
+  });
 
   const startGame = () => {
     let { sentence } = gameState;
@@ -273,24 +276,26 @@ const Game = () => {
   });
 
   const handleReset = (words) => {
-    // fade animation to reset canvas.
     // clear timer, reset all state to default.
-    setGameState({ ...gameState, sentence: undefined, currentIndex: 0 });
+    setState({ ...state, setting: true });
+    const reset = setTimeout(() => {
+      setGameState({ ...gameState, sentence: undefined, currentIndex: 0 });
 
-    setState({
-      started: false,
-      finished: false,
-      capslock: false,
-      wpm: 0,
-      cps: 0,
-      msElapsed: 0,
-      numWords: words,
-      accuracy: 0,
-      setting: false,
-      caretHidden: false,
-      wpmData: [],
-      msElapsedData: []
-    });
+      setState({
+        started: false,
+        finished: false,
+        capslock: false,
+        wpm: 0,
+        msElapsed: 0,
+        numWords: words,
+        accuracy: 0,
+        setting: false,
+        caretHidden: false,
+        wpmData: [],
+        msElapsedData: []
+      });
+      clearTimeout(reset);
+    }, 50);
 
     clearInterval(timerRef.current);
   };

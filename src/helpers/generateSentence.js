@@ -1,12 +1,9 @@
-import randomWords from "random-words";
 import { words } from "./words";
-import { gameQuotes } from "./quotes";
 import { funfacts } from "./funfacts";
 
 export const generateSentence = (wordcount, gamemode) => {
   //going to return a string
   let s = "";
-  let a;
 
   switch (gamemode) {
     case "funfacts": {

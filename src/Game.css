@@ -115,11 +115,11 @@ ul {
 
 .fade-out {
   opacity: 0;
-  transition: all 150ms ease;
+  transition: all 100ms ease;
 }
 
 .fade-in {
-  animation: fadeInAnimation 150ms ease;
+  animation: fadeInAnimation 100ms ease;
 }
 
 .author-fade-in {
