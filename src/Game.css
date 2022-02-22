@@ -36,7 +36,13 @@
 }
 
 .words-content-container {
-  flex: 2;
+  width: 850px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .words-content-container {
+    flex: 10;
+  }
 }
 
 .restart.button {

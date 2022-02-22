@@ -1,5 +1,5 @@
-import { words } from "../public/words";
-import { funfacts } from "../public/funfacts";
+import { words } from "../static/words";
+import { funfacts } from "../static/funfacts";
 
 export const generateSentence = (wordcount, gamemode) => {
   //going to return a string
@@ -12,11 +12,9 @@ export const generateSentence = (wordcount, gamemode) => {
       break;
     }
     default: {
-      for (let i = 0; i < wordcount + 1; i++) {
+      for (let i = 0; i < wordcount; i++) {
         let r = Math.floor(Math.random() * words.length);
-        if (!s.split(" ").includes(words[r])) {
-          s += words[r] + " ";
-        }
+        s += words[r] + " ";
       }
       break;
     }

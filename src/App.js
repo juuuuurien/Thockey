@@ -3,24 +3,10 @@ import ThockeyLogo from "./Banner";
 import { useState, useEffect } from "react";
 import { Provider } from "./context/context";
 import StarryBackground from "./StarryBackground";
+import { initialState } from "./static/initialAppState";
 
 function App() {
-  const [state, setState] = useState({
-    started: false,
-    finished: false,
-    capslock: false,
-    wpm: 0,
-    cps: 0,
-    msElapsed: 0,
-    numWords: 25,
-    accuracy: 0,
-    settingStars: false,
-    setting: false,
-    caretHidden: false,
-    quoteFinished: false,
-    wpmData: [],
-    msElapsedData: []
-  });
+  const [state, setState] = useState(initialState);
 
   return (
     <Provider value={[state, setState]}>

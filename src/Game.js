@@ -29,7 +29,6 @@ const Game = () => {
   });
   const timerRef = useRef();
   const stateRef = useRef();
-  
 
   const handleFinished = () => {
     clearInterval(timerRef.current);
@@ -62,20 +61,6 @@ const Game = () => {
   };
 
   const handleResize = () => {
-    // fix caret depending on window
-
-    let caret = document.querySelector(".caret");
-    let char = Array.from(document.querySelectorAll(".character"))[
-      gameState.currentIndex
-    ];
-
-    if (char !== undefined) {
-      let charWinPosition = char.getBoundingClientRect();
-      caret.style.top = charWinPosition.top.toString() + "px";
-      caret.style.left = charWinPosition.left.toString() + "px";
-    } else {
-      return;
-    }
     setState({ ...state, settingStars: false });
   };
 
@@ -91,7 +76,7 @@ const Game = () => {
         s = sentence;
         a = author;
       } else {
-        s = generateSentence(state.numWords, gameState.gamemode);
+        s = generateSentence(state.wordCount, gameState.gamemode);
       }
       const [spans, string] = await spanify(s, gameState.gamemode);
 
@@ -123,7 +108,7 @@ const Game = () => {
     };
 
     clearTimeout(timeout);
-  },[gameState.sentence]);
+  }, [gameState.sentence]);
 
   const startGame = () => {
     let { sentence } = gameState;
@@ -173,87 +158,80 @@ const Game = () => {
     timerRef.current = timer;
   };
 
-  const updateCaret = (type) => {
-    let { sentence, currentIndex } = gameState;
-    let caret = document.querySelector(".caret");
-    let sent = Array.from(document.querySelectorAll(".character"));
+  const updateCharacterStyle = (type) => {
+    // let { sentence, currentIndex } = gameState;
+    // let sent = Array.from(document.querySelectorAll(".character"));
+    // console.log(sent);
+    // let char = sent[currentIndex];
+    // const prevChar = sent[currentIndex - 1];
+    // let type;
+    // if (key === currentChar && key !== "Backspace") {
+    //   updateCaret("forward");
+    //   type = "right";
+    // } else {
+    //   updateCaret("forward");
+    //   type = "wrong";
+    // }
+    // if (key === "Backspace") {
+    //   updateCaret("back");
+    //   type = "delete";
+    // }
+    // switch (type) {
+    //   case "right": {
+    //     if (currentIndex !== sentence.spans.length)
+    //       if (char) {
+    //         char.classList.remove("wrong");
+    //         char.classList.add("right", "done");
+    //         setGameState({ ...gameState, currentIndex: currentIndex + 1 });
+    //       }
+    //     return;
+    //   }
+    //   case "wrong": {
+    //     if (char) {
+    //       char.classList.remove("right");
+    //       char.classList.add("wrong", "done");
+    //       setGameState({ ...gameState, currentIndex: currentIndex + 1 });
+    //     }
+    //     return;
+    //   }
+    //   case "delete": {
+    //     if (prevChar) {
+    //       prevChar.classList.remove("right", "wrong", "done");
+    //       setGameState({ ...gameState, currentIndex: currentIndex - 1 });
+    //     }
+    //     return;
+    //   }
+    //   default:
+    //     return;
+    // }
+
+    let i = gameState.currentIndex;
+    // grab all spans of character
+    const spans = Array.from(document.querySelectorAll(".character"));
     switch (type) {
-      case "forward": {
-        //get correct node, move position accordingly
-        if (currentIndex < sentence.spans.length) {
-          let char = sent[currentIndex].getBoundingClientRect();
-          let charTop = char.top + window.scrollY;
-          caret.style.top = charTop.toString() + "px";
-          caret.style.left = (char.left + char.width).toString() + "px";
+      case "correct": {
+        spans[i].classList.add("right", "done");
+        spans[i].classList.remove("wrong");
+        setGameState({ ...gameState, currentIndex: i + 1 });
+        break;
+      }
+      case "incorrect": {
+        // remove the styles of the character before it, then decrement cursor
+        if (i < spans.length) {
+          spans[i].classList.add("wrong", "done");
+          spans[i].classList.remove("right");
+
+          setGameState({ ...gameState, currentIndex: i + 1 });
         }
-        return;
+        break;
       }
-      case "back": {
-        if (sent[currentIndex - 2]) {
-          let char = sent[currentIndex - 2].getBoundingClientRect();
-          let charTop = char.top + window.scrollY;
-          caret.style.top = charTop.toString() + "px";
-          caret.style.left = (char.left + char.width).toString() + "px";
-        } else {
-          let char = sent[0].getBoundingClientRect();
-          let charTop = char.top + window.scrollY;
-          caret.style.top = charTop.toString() + "px";
-          caret.style.left = char.left.toString() + "px";
+      case "Backspace": {
+        if (i > 0) {
+          spans[i - 1].classList.remove("right", "wrong", "done");
+          setGameState({ ...gameState, currentIndex: i - 1 });
         }
-
-        return;
+        break;
       }
-      default:
-        return;
-    }
-  };
-
-  const updateCharacterStyle = async (key, currentChar) => {
-    let { sentence, currentIndex } = gameState;
-    let sent = Array.from(document.querySelectorAll(".character"));
-    let char = sent[currentIndex];
-    const prevChar = sent[currentIndex - 1];
-    let type;
-
-    if (key === currentChar && key !== "Backspace") {
-      updateCaret("forward");
-      type = "right";
-    } else {
-      updateCaret("forward");
-      type = "wrong";
-    }
-
-    if (key === "Backspace") {
-      updateCaret("back");
-      type = "delete";
-    }
-
-    switch (type) {
-      case "right": {
-        if (currentIndex !== sentence.spans.length)
-          if (char) {
-            char.classList.remove("wrong");
-            char.classList.add("right", "done");
-            setGameState({ ...gameState, currentIndex: currentIndex + 1 });
-          }
-        return;
-      }
-      case "wrong": {
-        if (char) {
-          char.classList.remove("right");
-          char.classList.add("wrong", "done");
-          setGameState({ ...gameState, currentIndex: currentIndex + 1 });
-        }
-        return;
-      }
-      case "delete": {
-        if (prevChar) {
-          prevChar.classList.remove("right", "wrong", "done");
-          setGameState({ ...gameState, currentIndex: currentIndex - 1 });
-        }
-        return;
-      }
-
       default:
         return;
     }
@@ -261,47 +239,58 @@ const Game = () => {
 
   useKeyPress(async (key) => {
     let { sentence, currentIndex } = gameState;
+    const c = sentence.string[currentIndex];
+    const i = currentIndex;
 
+    // check key if it's an alpha or a control key
     if (key.length === 1 || key === "Backspace") {
+      // if alpha -
+      // start game if not started
       if (!state.started) {
         setState({ ...state, started: true });
         startGame();
       }
-      let currentChar = sentence.spans[0].props.children;
-      if (currentIndex < sentence.spans.length)
-        currentChar = sentence.spans[currentIndex].props.children;
-      await updateCharacterStyle(key, currentChar);
 
-      if (currentIndex === sentence.spans.length - 1 && key === currentChar) {
+      //lets check wrong or right here.
+      if (key !== "Backspace") {
+        if (key === c) {
+          updateCharacterStyle("correct");
+        } else {
+          updateCharacterStyle("incorrect");
+        }
+      } else {
+        updateCharacterStyle("Backspace");
+      }
+
+      // if cursor is at the last letter and input is correct,
+      //  finish the game
+      if (i === sentence.spans.length - 1 && key === c) {
         handleFinished();
       }
     }
     if (key === "ResetMacro") {
-      handleReset(state.numWords);
+      handleReset(state.wordCount);
     }
   });
 
   const handleReset = (words) => {
     // clear timer, reset all state to default.
-    
-   
-      setGameState({ ...gameState, sentence: undefined, currentIndex: 0 });
-      setState({
-        started: false,
-        finished: false,
-        capslock: false,
-        wpm: 0,
-        msElapsed: 0,
-        numWords: words,
-        accuracy: 0,
-        settingStars: false,
-        setting: false,
-        caretHidden: false,
-        wpmData: [],
-        msElapsedData: []
-      });
- 
-
+    setGameState({ ...gameState, sentence: undefined, currentIndex: 0 });
+    setState({
+      started: false,
+      finished: false,
+      capslock: false,
+      wpm: 0,
+      msElapsed: 0,
+      wordCount: words,
+      accuracy: 0,
+      settingStars: false,
+      setting: false,
+      caretHidden: false,
+      quoteFinished: false,
+      wpmData: [],
+      msElapsedData: []
+    });
     clearInterval(timerRef.current);
   };
 
@@ -314,7 +303,7 @@ const Game = () => {
             icon={<VscDebugRestart color="#f5ef7a" />}
             className="restart"
             onClick={() => {
-              handleReset(state.numWords);
+              handleReset(state.wordCount);
             }}
           />
           <div
@@ -328,7 +317,7 @@ const Game = () => {
               onClick={() => {
                 handleReset(15);
               }}
-              className={state.numWords === 15 ? "selected" : "button"}
+              className={state.wordCount === 15 ? "selected" : "button"}
             >
               15
             </Button>
@@ -336,7 +325,7 @@ const Game = () => {
               onClick={() => {
                 handleReset(25);
               }}
-              className={state.numWords === 25 ? "selected" : "button"}
+              className={state.wordCount === 25 ? "selected" : "button"}
             >
               25
             </Button>
@@ -344,7 +333,7 @@ const Game = () => {
               onClick={() => {
                 handleReset(50);
               }}
-              className={state.numWords === 50 ? "selected" : "button"}
+              className={state.wordCount === 50 ? "selected" : "button"}
             >
               50
             </Button>

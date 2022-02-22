@@ -1,4 +1,4 @@
-import { gameQuotes } from "../public/quotes";
+import { gameQuotes } from "../static/quotes";
 
 export const generateQuotes = () => {
   //going to return a string

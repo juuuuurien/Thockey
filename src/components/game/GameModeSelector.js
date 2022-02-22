@@ -7,7 +7,7 @@ const GameModeSelector = ({ gameState, setGameState, handleReset }) => {
   const handleChange = (type) => {
     switch (type) {
       case "quotes": {
-        handleReset(state.numWords);
+        handleReset(state.wordCount);
         setGameState({
           currentIndex: 0,
           sentence: undefined,
@@ -16,7 +16,7 @@ const GameModeSelector = ({ gameState, setGameState, handleReset }) => {
         break;
       }
       case "funfacts": {
-        handleReset(state.numWords);
+        handleReset(state.wordCount);
         setGameState({
           currentIndex: 0,
           sentence: undefined,
@@ -25,7 +25,7 @@ const GameModeSelector = ({ gameState, setGameState, handleReset }) => {
         break;
       }
       default: {
-        handleReset(state.numWords);
+        handleReset(state.wordCount);
         setGameState({
           currentIndex: 0,
           sentence: undefined,
