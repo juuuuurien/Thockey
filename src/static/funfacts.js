@@ -1,6 +1,6 @@
 export const funfacts = [
   "Ditto was meant to be usable through pokeballs in Super Smash Bros. Melee. It was meant to transform into whoever threw the ball and would help fight.",
-  "If you set the system language to Japanese nn Super Smash Bros. Melee, Mewtwo will speak in fulls entences during its victory poses.",
+  "If you set the system language to Japanese in Super Smash Bros. Melee, Mewtwo will speak in fulls entences during its victory poses.",
   "Both Solid Snake and Sonic the HedgeHog were supposed to be characters in Super Smash Bros. Melee, but due to time constraints, he couldn't be added to the game.",
   "While developing Super Smash Bros. Melee, creator Masahiro Sakurai only took one day off of work and even fainted while working on the game's musical composition.",
   "In Super Mario Sunshine, Il Pianticcimo is a masked man disguised as a Pianta. Unmasked, is actually the running man from Ocarina of Time and Majoras Mask!",
