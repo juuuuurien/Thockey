@@ -64,11 +64,9 @@ export const gameQuotes = [
   {
     author: "Lloyd Irving, 'Tales of Symphonia",
     quotes: [
-      "Dwarven Vow #1: Let's all work together for the sake of a peaceful world.",
-      "Dwarven Vow #2: Never abandon someone in need.",
       "Dwarven Vow #41. It is better to begin in the evening than not at all.",
       "Regardless of who your real father is, you're still you. Nothing's changed. You just have two fathers. Just think of yourself as being lucky for having more than most people do.",
-      "Shut up! It doesn't matter if you're a half-elf, a human, or whatever. No matter who or what you are, once you are born into this world you have the right to live!"
+      "It doesn't matter if you're a half-elf, a human, or whatever. No matter who or what you are, once you are born into this world you have the right to live!"
     ]
   },
   {

@@ -14,7 +14,12 @@ export const generateSentence = (wordcount, gamemode) => {
     default: {
       for (let i = 0; i < wordcount; i++) {
         let r = Math.floor(Math.random() * words.length);
-        s += words[r] + " ";
+        if (!s.split(" ").includes(words[r])){
+          s += words[r] + " ";
+        } else {
+          r = Math.floor(Math.random() * words.length);
+          s += words[r] + " ";
+        } 
       }
       break;
     }
