@@ -4,21 +4,6 @@ import { context } from "../../context/context";
 const Caret = ({ gameState }) => {
   const [state, setState] = useContext(context);
 
-  // useEffect(() => {
-  //   if (!state.started) {
-  //     let caret = document.querySelector(".caret");
-  //     let char = Array.from(document.querySelectorAll(".character"))[
-  //       gameState.currentIndex
-  //     ];
-
-  //     if (char !== undefined) {
-  //       caret.style.top =
-  //         char.getBoundingClientRect().top + window.scrollY + "px";
-  //       caret.style.left = char.getBoundingClientRect().left.toString() + "px";
-  //     }
-  //   }
-  // });
-
   useLayoutEffect(() => {
     if (!state.finished) {
       let caret = document.querySelector(".caret");

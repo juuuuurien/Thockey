@@ -1,5 +1,5 @@
-import "./App.css";
-import "./Game.css";
+import "./css/App.css";
+import "./css/Game.css";
 import "./css/mobile.css";
 import { useContext, useEffect, useState, useRef } from "react";
 import useKeyPress from "./hooks/useKeyPress";
@@ -60,10 +60,6 @@ const Game = () => {
     finishAnimation(state, setState, gameState.gamemode);
   };
 
-  const handleResize = () => {
-    setState({ ...state, settingStars: false });
-  };
-
   useEffect(() => {
     stateRef.current = state;
     let { sentence } = gameState;
@@ -96,19 +92,8 @@ const Game = () => {
       }
     };
 
-    // if game isn't started, set a blinking animation for the caret
-
     if (!sentence) init();
-    let timeout;
-    window.onresize = () => {
-      setState({ ...state, settingStars: true });
-      timeout = setTimeout(() => {
-        handleResize();
-      }, 100);
-    };
-
-    clearTimeout(timeout);
-  }, [gameState.sentence]);
+  });
 
   const startGame = () => {
     let { sentence } = gameState;
@@ -159,52 +144,6 @@ const Game = () => {
   };
 
   const updateCharacterStyle = (type) => {
-    // let { sentence, currentIndex } = gameState;
-    // let sent = Array.from(document.querySelectorAll(".character"));
-    // console.log(sent);
-    // let char = sent[currentIndex];
-    // const prevChar = sent[currentIndex - 1];
-    // let type;
-    // if (key === currentChar && key !== "Backspace") {
-    //   updateCaret("forward");
-    //   type = "right";
-    // } else {
-    //   updateCaret("forward");
-    //   type = "wrong";
-    // }
-    // if (key === "Backspace") {
-    //   updateCaret("back");
-    //   type = "delete";
-    // }
-    // switch (type) {
-    //   case "right": {
-    //     if (currentIndex !== sentence.spans.length)
-    //       if (char) {
-    //         char.classList.remove("wrong");
-    //         char.classList.add("right", "done");
-    //         setGameState({ ...gameState, currentIndex: currentIndex + 1 });
-    //       }
-    //     return;
-    //   }
-    //   case "wrong": {
-    //     if (char) {
-    //       char.classList.remove("right");
-    //       char.classList.add("wrong", "done");
-    //       setGameState({ ...gameState, currentIndex: currentIndex + 1 });
-    //     }
-    //     return;
-    //   }
-    //   case "delete": {
-    //     if (prevChar) {
-    //       prevChar.classList.remove("right", "wrong", "done");
-    //       setGameState({ ...gameState, currentIndex: currentIndex - 1 });
-    //     }
-    //     return;
-    //   }
-    //   default:
-    //     return;
-    // }
-
     let i = gameState.currentIndex;
     // grab all spans of character
     const spans = Array.from(document.querySelectorAll(".character"));
@@ -357,6 +296,13 @@ const Game = () => {
           handleReset={handleReset}
         />
         <ResetLabel />
+        <button
+          onClick={() => {
+            setState({ ...state, finished: !state.finished });
+          }}
+        >
+          finish
+        </button>
       </div>
       <div className="content-container" />
     </div>

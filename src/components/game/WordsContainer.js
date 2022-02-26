@@ -11,7 +11,7 @@ const WordsContainer = ({ gameState }) => {
 
   return (
     <div className="words-container">
-      <Caret gameState={gameState} />
+      {!state.finished && <Caret gameState={gameState} />}
       {!state.finished ? <Words gameState={gameState} /> : <Results />}
     </div>
   );
