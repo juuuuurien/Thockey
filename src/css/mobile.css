@@ -10,13 +10,14 @@
   }
 
   .words-content-container {
-    padding: 1rem;
+    width: auto;
+    margin: 0rem 2rem;
   }
 
   .words-container {
-    width: auto;
     background-color: #1324b810;
-    margin: 1rem;
+    margin: 0.5rem 0rem;
+    padding: 2rem;
     border-radius: 0.5rem;
     text-align: left;
     line-height: 2.5rem;
@@ -32,9 +33,11 @@
   }
 
   .button-container {
-    transition: all 200ms ease;
-    flex-direction: row;
     display: flex;
+    flex-direction: row-reverse;
+    margin: 0rem 1rem;
+    float: left;
+    transition: all 200ms ease;
   }
 
   #reset-label {
@@ -44,7 +47,7 @@
     font-size: 0.75rem;
     align-items: center;
     font-weight: 600;
-    opacity: 0;
+    opacity: 1;
     transition: all 500ms ease;
   }
 }
