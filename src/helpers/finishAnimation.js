@@ -1,13 +1,6 @@
 import { useContext } from "react";
 import { context } from "../context/context";
 
-const calculateAccuracy = () => {
-  const wrongCount = Array.from(document.querySelectorAll(".wrong")).length;
-  const charCount = Array.from(document.querySelectorAll(".character")).length;
-
-  return Math.ceil(((charCount - wrongCount) / charCount) * 100 * 10) / 10;
-};
-
 export const finishAnimation = (state, setState, gamemode) => {
   const defaultFinish = () => {
     const timer1 = setTimeout(() => {
@@ -19,7 +12,6 @@ export const finishAnimation = (state, setState, gamemode) => {
           setting: false,
           finished: true,
           caretHidden: true,
-          accuracy: calculateAccuracy()
         });
         return clearTimeout(timer2);
       }, 150);
