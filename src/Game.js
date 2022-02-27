@@ -98,13 +98,14 @@ const Game = () => {
   const startGame = () => {
     let { sentence } = gameState;
     let timeStart = dayjs();
-    const frameRate = 500;
     let wpmData = [];
     let msElapsedData = [];
+    let msElapsedBefore = 0;
 
     const timer = setInterval(() => {
-      let wordArr = sentence.string.split(" ");
+    msElapsedBefore++
 
+      let wordArr = sentence.string.split(" ");
       let timeNow = dayjs();
       let msElapsed = timeNow.diff(timeStart, "ms");
       let arr = Array.from(document.querySelectorAll(".done"));
@@ -124,7 +125,8 @@ const Game = () => {
 
         let _wpm = Math.ceil((right * 60 * 1000) / msElapsed);
 
-        if (msElapsed > 1000) {
+        if (msElapsedBefore > 5 && msElapsed > 1000) {
+                    msElapsedBefore = 0;
           wpmData.push(_wpm);
           msElapsedData.push(Math.floor(msElapsed / 10) * 10);
         }
@@ -138,7 +140,7 @@ const Game = () => {
           msElapsedData: msElapsedData
         });
       }
-    }, frameRate);
+    }, 100);
 
     timerRef.current = timer;
   };

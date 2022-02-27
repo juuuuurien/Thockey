@@ -7,7 +7,7 @@ import {
   PointElement,
   LineElement,
   Title,
-  Tooltip
+  Tooltip,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -24,25 +24,25 @@ export const options = {
   responsive: true,
   plugins: {
     title: {
-      display: false
-    }
+      display: false,
+    },
   },
   scales: {
     x: {
       display: true,
       title: {
         display: true,
-        text: "Time in milliseconds"
-      }
+        text: "Time in milliseconds",
+      },
     },
     y: {
       display: true,
       title: {
         display: true,
-        text: "Words per Minute"
-      }
-    }
-  }
+        text: "Words per Minute",
+      },
+    },
+  },
 };
 
 const LineGraph = () => {
@@ -57,17 +57,17 @@ const LineGraph = () => {
         label: "Avaerage Words per Minute vs Time",
         data: state.wpmData,
         borderColor: "rgb(227, 237, 255, 0.5)",
-        backgroundColor: "rgb(227, 237, 255)"
-      }
-    ]
+        backgroundColor: "rgb(227, 237, 255)",
+      },
+    ],
   };
 
   return (
     <Line
       style={{
-        backgroundColor: "#00000030",
+        backgroundColor: "#1323b810",
         borderRadius: 10,
-        padding: "1rem"
+        padding: "1rem",
       }}
       options={options}
       data={data}

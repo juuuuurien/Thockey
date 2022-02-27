@@ -29,7 +29,7 @@ export const gameQuotes = [
     ]
   },
   {
-    author: "G-Man, 'Half-Life 2",
+    author: "G-Man, 'Half-Life 2'",
     quotes: [
       "The right man in the wrong place can make all the difference in the world. So, wake up, Mr. Freeman. Wake up and smell the ashes."
     ]
@@ -62,7 +62,7 @@ export const gameQuotes = [
     ]
   },
   {
-    author: "Lloyd Irving, 'Tales of Symphonia",
+    author: "Lloyd Irving, 'Tales of Symphonia'",
     quotes: [
       "Dwarven Vow #41. It is better to begin in the evening than not at all.",
       "Regardless of who your real father is, you're still you. Nothing's changed. You just have two fathers. Just think of yourself as being lucky for having more than most people do.",
@@ -70,19 +70,19 @@ export const gameQuotes = [
     ]
   },
   {
-    author: "Colette Brunel, 'Tales of Symphonia",
+    author: "Colette Brunel, 'Tales of Symphonia'",
     quotes: [
       "Oh, Holy One, cast thy purifying light upon these corrupt souls. Judgement!"
     ]
   },
   {
-    author: "Genis Sage, 'Tales of Symphonia",
+    author: "Genis Sage, 'Tales of Symphonia'",
     quotes: [
       "I call upon thee in the land of the dead, unleash thy fury of thunder! Indignation!"
     ]
   },
   {
-    author: "Raine Sage, 'Tales of Symphonia",
+    author: "Raine Sage, 'Tales of Symphonia'",
     quotes: [
       "If you don't understand, then make use of your remaining life to think about what it means for a person to live. That's my final lesson to you as a teacher. Now go. Do as your teacher says."
     ]
@@ -100,7 +100,7 @@ export const gameQuotes = [
     ]
   },
   {
-    author: "Cortana, 'Halo 3",
+    author: "Cortana, 'Halo 3'",
     quotes: [
       "They let me pick. Did I ever tell you that? Choose which ever Spartan I wanted. You know me. I did my research, watched as you became the soldier we needed you to be. But you had something they didn't, something no one saw but me. Can you guess? Luck. Was I wrong?"
     ]

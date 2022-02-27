@@ -113,11 +113,15 @@ ul {
 }
 
 #results_list li {
-  margin: 0.25rem 0;
-  padding: 0.6rem 2.25rem;
+  margin: 0rem 3rem;
+  padding: 0.25rem 1.5rem;
   display: flex;
   justify-content: space-between;
   border-radius: 4px;
+}
+
+#results_list li:nth-child(odd) {
+  background-color: #1323b810;
 }
 
 .fade-out {

@@ -24,9 +24,9 @@ const StarryBackground = () => {
       return stars;
     });
 
-    requestRef.current = requestAnimationFrame(() => {
-      updateAnimationState();
-    });
+    // requestRef.current = requestAnimationFrame(() => {
+    //   updateAnimationState();
+    // });
   }, [requestRef]);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const StarryBackground = () => {
       updateAnimationState();
     });
     return () => cancelAnimationFrame(requestRef.current);
-  }, [state.started, updateAnimationState]);
+  });
 
   return <Canvas stars={stars} setStars={setStars} />;
 };
@@ -49,8 +49,7 @@ const Canvas = (props) => {
   useEffect(() => {
     // IDEA: DRAW A CANVAS THATS REALLY BIG AND THEN JUST TRANSLATE THE POSITION DOWN LIKE A SCROLL
     const context = canvasRef.current.getContext("2d");
-    // console.log(state);
-    //Our first draw
+
     context.canvas.width = window.innerWidth;
     context.canvas.height = window.innerHeight;
     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
@@ -59,14 +58,14 @@ const Canvas = (props) => {
       stars.forEach((star) => {
         let _speed =
           star.speed +
-          (star.speed * (state.wpm * -0.009 * state.msElapsed)) / 1000;
+          (star.speed * (state.wpm * -0.007 * state.msElapsed)) / 1000;
         if (star.y < 0) star.y = window.innerHeight;
         if (star.y > window.innerHeight) star.y = 0;
         context.fillStyle = star.color;
         context.fillRect(
           star.x,
           // increase acceleration via wpm.
-          (star.y -= _speed * 0.3),
+          (star.y -= _speed),
           star.size,
           star.size
         );
