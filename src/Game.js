@@ -25,10 +25,19 @@ const Game = () => {
   const [gameState, setGameState] = useState({
     gamemode: "default",
     sentence: undefined,
-    currentIndex: 0
+    currentIndex: 0,
   });
   const timerRef = useRef();
   const stateRef = useRef();
+
+  const calculateAccuracy = () => {
+    const wrongCount = Array.from(document.querySelectorAll(".wrong")).length;
+    const charCount = Array.from(
+      document.querySelectorAll(".character")
+    ).length;
+
+    return Math.ceil(((charCount - wrongCount) / charCount) * 100 * 10) / 10;
+  };
 
   const handleFinished = () => {
     clearInterval(timerRef.current);
@@ -53,7 +62,8 @@ const Game = () => {
 
       setState({
         ...state,
-        wpm: _wpm
+        accuracy: calculateAccuracy(),
+        wpm: _wpm,
       });
     }
     //trigger fade animations
@@ -81,12 +91,12 @@ const Game = () => {
         if (gameState.gamemode === "quotes") {
           setGameState({
             ...gameState,
-            sentence: { spans: spans, string: string, author: a }
+            sentence: { spans: spans, string: string, author: a },
           });
         } else {
           setGameState({
             ...gameState,
-            sentence: { spans: spans, string: string }
+            sentence: { spans: spans, string: string },
           });
         }
       }
@@ -103,7 +113,7 @@ const Game = () => {
     let msElapsedBefore = 0;
 
     const timer = setInterval(() => {
-    msElapsedBefore++
+      msElapsedBefore++;
 
       let wordArr = sentence.string.split(" ");
       let timeNow = dayjs();
@@ -126,7 +136,7 @@ const Game = () => {
         let _wpm = Math.ceil((right * 60 * 1000) / msElapsed);
 
         if (msElapsedBefore > 5 && msElapsed > 1000) {
-                    msElapsedBefore = 0;
+          msElapsedBefore = 0;
           wpmData.push(_wpm);
           msElapsedData.push(Math.floor(msElapsed / 10) * 10);
         }
@@ -137,7 +147,7 @@ const Game = () => {
           wpm: _wpm,
           msElapsed: msElapsed,
           wpmData: wpmData,
-          msElapsedData: msElapsedData
+          msElapsedData: msElapsedData,
         });
       }
     }, 100);
@@ -230,7 +240,7 @@ const Game = () => {
       caretHidden: false,
       quoteFinished: false,
       wpmData: [],
-      msElapsedData: []
+      msElapsedData: [],
     });
     clearInterval(timerRef.current);
   };
