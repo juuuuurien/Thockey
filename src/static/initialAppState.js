@@ -6,6 +6,7 @@ export const initialState = {
   msElapsed: 0,
   wordCount: 25,
   accuracy: 0,
+  wrongCharacters: 0,
   settingStars: false,
   setting: false,
   caretHidden: false,

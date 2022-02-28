@@ -59,8 +59,14 @@ const Canvas = (props) => {
         let _speed =
           star.speed +
           (star.speed * (state.wpm * -0.007 * state.msElapsed)) / 1000;
-        if (star.y < 0) star.y = window.innerHeight;
-        if (star.y > window.innerHeight) star.y = 0;
+        if (star.y < 0) {
+          star.y = window.innerHeight;
+          star.x = Math.floor(Math.random() * window.innerWidth);
+        }
+        if (star.y > window.innerHeight) {
+          star.y = 0;
+          star.x = Math.floor(Math.random() * window.innerWidth);
+        }
         context.fillStyle = star.color;
         context.fillRect(
           star.x,

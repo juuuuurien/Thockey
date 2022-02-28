@@ -1,7 +1,22 @@
 import { useContext } from "react";
 import { context } from "../context/context";
 
+const calculateAccuracy = () => {
+  const wrongCount = Array.from(document.querySelectorAll(".wrong")).length;
+  const charCount = Array.from(document.querySelectorAll(".character")).length;
+
+  return Math.ceil(((charCount - wrongCount) / charCount) * 100 * 10) / 10;
+};
+
+const calculateWrongCharacters = () => {
+  const wrongCount = Array.from(document.querySelectorAll(".wrong")).length;
+  return wrongCount;
+};
+
 export const finishAnimation = (state, setState, gamemode) => {
+  const accuracy = calculateAccuracy();
+  const wrongCharacters = calculateWrongCharacters();
+
   const defaultFinish = () => {
     const timer1 = setTimeout(() => {
       setState({ ...state, setting: true, caretHidden: true });
@@ -12,6 +27,8 @@ export const finishAnimation = (state, setState, gamemode) => {
           setting: false,
           finished: true,
           caretHidden: true,
+          accuracy: accuracy,
+          wrongCharacters: wrongCharacters
         });
         return clearTimeout(timer2);
       }, 150);

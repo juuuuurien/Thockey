@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { context } from "../../context/context";
 import {
   Chart as ChartJS,
@@ -7,7 +7,7 @@ import {
   PointElement,
   LineElement,
   Title,
-  Tooltip,
+  Tooltip
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -23,26 +23,43 @@ ChartJS.register(
 export const options = {
   responsive: true,
   plugins: {
-    title: {
-      display: false,
+    datalabels: {
+      anchor: "end",
+      align: "top",
+      color: "rgb(227, 237, 255)",
+      formatter: Math.round,
+      font: {
+        weight: "bold"
+      }
     },
+    title: {
+      display: false
+    }
   },
   scales: {
     x: {
+      ticks: {
+        color: "rgb(227, 237, 255)"
+      },
       display: true,
       title: {
         display: true,
         text: "Time in milliseconds",
-      },
+        color: "rgb(227, 237, 255)"
+      }
     },
     y: {
+      ticks: {
+        color: "rgb(227, 237, 255)"
+      },
       display: true,
       title: {
         display: true,
         text: "Words per Minute",
-      },
-    },
-  },
+        color: "rgb(227, 237, 255)"
+      }
+    }
+  }
 };
 
 const LineGraph = () => {
@@ -56,10 +73,10 @@ const LineGraph = () => {
       {
         label: "Avaerage Words per Minute vs Time",
         data: state.wpmData,
-        borderColor: "rgb(227, 237, 255, 0.5)",
-        backgroundColor: "rgb(227, 237, 255)",
-      },
-    ],
+        borderColor: "#2654b8",
+        backgroundColor: "rgb(227, 237, 255)"
+      }
+    ]
   };
 
   return (
@@ -67,7 +84,7 @@ const LineGraph = () => {
       style={{
         backgroundColor: "#1323b810",
         borderRadius: 10,
-        padding: "1rem",
+        padding: "1rem"
       }}
       options={options}
       data={data}

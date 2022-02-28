@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { context } from "../../context/context";
+import BarGraph from "./BarGraph";
 import LineGraph from "./LineGraph";
 
 const Results = ({ gameState }) => {
@@ -25,13 +26,20 @@ const Results = ({ gameState }) => {
               <span>{Math.ceil(state.msElapsed / 1000)} sec</span>
             </li>
             <li>
-              <span>Wrong Letters</span>
-              <span>3</span>
+              <span>Missed Characters</span>
+              <span id="missed-characters">{`${state.wrongCharacters}`}</span>
             </li>
           </ul>
         </div>
-        <div style={{ flex: 1, backgroundColor: "#000000" }}>
-          something here
+        <div
+          style={{
+            flex: 1.25,
+            display: "flex",
+            alignItems: "center",
+            margin: "1rem"
+          }}
+        >
+          <BarGraph />
         </div>
       </div>
       <LineGraph />

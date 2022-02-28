@@ -53,6 +53,10 @@ body {
   transition: all 0.15s linear;
 }
 
+#missed-characters {
+  color: rgb(255, 102, 128);
+}
+
 .character {
   /* padding: 0 0.03rem; */
   font-size: 1.4rem;

@@ -25,19 +25,23 @@ const Game = () => {
   const [gameState, setGameState] = useState({
     gamemode: "default",
     sentence: undefined,
-    currentIndex: 0,
+    currentIndex: 0
   });
   const timerRef = useRef();
   const stateRef = useRef();
 
-  const calculateAccuracy = () => {
-    const wrongCount = Array.from(document.querySelectorAll(".wrong")).length;
-    const charCount = Array.from(
-      document.querySelectorAll(".character")
-    ).length;
+  // const calculateAccuracy = () => {
+  //   const wrongCount = Array.from(document.querySelectorAll(".wrong")).length;
+  //   const charCount = Array.from(document.querySelectorAll(".character"))
+  //     .length;
 
-    return Math.ceil(((charCount - wrongCount) / charCount) * 100 * 10) / 10;
-  };
+  //   return Math.ceil(((charCount - wrongCount) / charCount) * 100 * 10) / 10;
+  // };
+
+  // const calculateWrongCharacters = () => {
+  //   const wrongCount = Array.from(document.querySelectorAll(".wrong")).length;
+  //   return wrongCount;
+  // };
 
   const handleFinished = () => {
     clearInterval(timerRef.current);
@@ -59,12 +63,42 @@ const Game = () => {
       });
 
       let _wpm = Math.ceil((right * 60 * 1000) / state.msElapsed);
+      // const accuracy = calculateAccuracy();
+      // const wrongCharacters = calculateWrongCharacters();
+      // console.log(accuracy);
+      // console.log(wrongCharacters);
 
       setState({
         ...state,
-        accuracy: calculateAccuracy(),
-        wpm: _wpm,
+        wpm: _wpm
       });
+
+      //  pull data, spread data, set the data.
+      let data;
+
+      if (window.localStorage.getItem("data")) {
+        let oldData = JSON.parse(window.localStorage.getItem("data"));
+        let new_past_wpms = oldData.data.past_wpms.slice(0, -1);
+        let new_past_dates = oldData.data.past_dates.slice(0, -1);
+
+        console.log(new_past_wpms);
+
+        data = {
+          data: {
+            past_wpms: [_wpm, ...new_past_wpms],
+            past_dates: [dayjs().format("MMM, DD"), ...new_past_dates]
+          }
+        };
+      } else {
+        data = {
+          data: {
+            past_wpms: [_wpm, 0, 0, 0, 0, 0, 0],
+            past_dates: [dayjs().format("MMM, DD"), 0, 0, 0, 0, 0, 0]
+          }
+        };
+      }
+
+      window.localStorage.setItem("data", JSON.stringify(data));
     }
     //trigger fade animations
     finishAnimation(state, setState, gameState.gamemode);
@@ -91,12 +125,12 @@ const Game = () => {
         if (gameState.gamemode === "quotes") {
           setGameState({
             ...gameState,
-            sentence: { spans: spans, string: string, author: a },
+            sentence: { spans: spans, string: string, author: a }
           });
         } else {
           setGameState({
             ...gameState,
-            sentence: { spans: spans, string: string },
+            sentence: { spans: spans, string: string }
           });
         }
       }
@@ -147,7 +181,7 @@ const Game = () => {
           wpm: _wpm,
           msElapsed: msElapsed,
           wpmData: wpmData,
-          msElapsedData: msElapsedData,
+          msElapsedData: msElapsedData
         });
       }
     }, 100);
@@ -235,12 +269,13 @@ const Game = () => {
       msElapsed: 0,
       wordCount: words,
       accuracy: 0,
+      wrongCharacters: 0,
       settingStars: false,
       setting: false,
       caretHidden: false,
       quoteFinished: false,
       wpmData: [],
-      msElapsedData: [],
+      msElapsedData: []
     });
     clearInterval(timerRef.current);
   };
