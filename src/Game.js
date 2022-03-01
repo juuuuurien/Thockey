@@ -290,35 +290,7 @@ const Game = () => {
   return (
     <div className="game-container">
       <div className="content-container">
-        {gameState.gamemode === "default" && (
-          <div className="button-container">
-            <Button
-              onClick={() => {
-                handleReset(15);
-              }}
-              className={state.wordCount === 15 ? "selected" : "button"}
-            >
-              15
-            </Button>
-            <Button
-              onClick={() => {
-                handleReset(25);
-              }}
-              className={state.wordCount === 25 ? "selected" : "button"}
-            >
-              25
-            </Button>
-            <Button
-              onClick={() => {
-                handleReset(50);
-              }}
-              className={state.wordCount === 50 ? "selected" : "button"}
-            >
-              50
-            </Button>
-          </div>
-        )}
-        <div style={{ display: "flex", float: "right" }}>
+        <div className="button-container">
           <Button
             round
             icon={<VscDebugRestart color="#f5ef7a" />}
@@ -327,6 +299,34 @@ const Game = () => {
               handleReset(state.wordCount);
             }}
           />
+          {gameState.gamemode === "default" && (
+            <>
+              <Button
+                onClick={() => {
+                  handleReset(15);
+                }}
+                className={state.wordCount === 15 ? "selected" : "button"}
+              >
+                15
+              </Button>
+              <Button
+                onClick={() => {
+                  handleReset(25);
+                }}
+                className={state.wordCount === 25 ? "selected" : "button"}
+              >
+                25
+              </Button>
+              <Button
+                onClick={() => {
+                  handleReset(50);
+                }}
+                className={state.wordCount === 50 ? "selected" : "button"}
+              >
+                50
+              </Button>
+            </>
+          )}
         </div>
       </div>
       <div className="words-content-container">
