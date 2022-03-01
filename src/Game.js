@@ -92,7 +92,15 @@ const Game = () => {
         data = {
           data: {
             past_wpms: [_wpm, 0, 0, 0, 0, 0, 0],
-            past_dates: [dayjs().format("MMM, DD"), 0, 0, 0, 0, 0, 0]
+            past_dates: [
+              dayjs().format("MMM, DD"),
+              "-",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-"
+            ]
           }
         };
       }
@@ -168,7 +176,7 @@ const Game = () => {
 
         let _wpm = Math.ceil((right * 60 * 1000) / msElapsed);
 
-        if (msElapsedBefore > 5 && msElapsed > 1000) {
+        if (msElapsedBefore > 4 && msElapsed > 1000) {
           msElapsedBefore = 0;
           wpmData.push(_wpm);
           msElapsedData.push(Math.floor(msElapsed / 10) * 10);

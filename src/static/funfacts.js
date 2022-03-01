@@ -12,7 +12,7 @@ export const funfacts = [
   "In The Legend of Zelda Ocarina of Time, there is a glitch that allows Link to warp directly from the Great Deku Tree to escaping Ganon's castle, allowing you to beat the game in under 25 minutes.",
   "The overworld theme for World 3 of Super Mario Bros. 3 is actually the predecessor to the Great Fairy Fountain theme from The Legend of Zelda.",
   "In the Legend of Zelda Wind Waker, there is concept art of an adult Link in various action poses. This could suggest Link's age was supposed to change throughout the game similar to Ocarina of Time. ",
-  "One member of the small team working on the game was a guy who toiled on nothing but Batman’s cape for over two years straight. He had to come up with over 700 unique animations and sound effects in order to capture it’s full flappy glory.",
+  "One of the developers for Batman Arkham Aslum worked on nothing but Batman’s cape for over two years straight. He had to come up with over 700 unique animations and sound effects in order to capture it’s full flappy glory.",
   "Hironobu Sakaguchi explained that Final Fantasy was his personal last-ditch effort in the game industry and that its title stemmed from his feelings at the time; had the game not sold well, he would have quit the business and gone back to university.",
   "The Konami Code was created by Kazuhisa Hashimoto, who was developing the 1985 arcade game Gradius for the NES. He created the cheat code to traverse the game quickly as it gave all powerups. The code was forgotten and never removed.",
   "As a means to boost game sales, Rockstar paid a PR expert to cause controversy and get GTA negative press coverage.",
