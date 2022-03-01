@@ -28,12 +28,16 @@
 .game-container {
   display: flex;
   flex-direction: row;
-  margin: 0rem 0rem 5rem 0rem;
+  margin: 2rem 0rem 10rem 0rem;
 }
 
 .content-container {
   flex: 1;
   justify-content: flex-end;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 .words-content-container {
@@ -47,18 +51,14 @@
 }
 
 .restart.button {
+  display: inline-flex;
   margin-bottom: 0rem;
   margin-top: 0rem;
 }
 
 .button-container {
+  margin-top: 2rem;
   float: right;
-  transition: all 200ms ease;
-}
-
-.button-container.disabled {
-  pointer-events: none;
-  opacity: 0;
   transition: all 200ms ease;
 }
 
@@ -68,6 +68,7 @@
   flex-direction: row;
   font-size: 0.75rem;
   align-items: center;
+  justify-content: center;
   font-weight: 600;
 }
 
@@ -148,4 +149,20 @@ ul {
 
 #select {
   float: right;
+}
+
+.emoji {
+  margin: 0px 5px;
+  filter: saturate(0) brightness(0.4);
+  cursor: pointer;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+.emoji.selected {
+  margin: 0px 5px;
+  filter: saturate(2) brightness(1);
+  font-size: 1.5rem;
 }

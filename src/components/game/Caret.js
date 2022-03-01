@@ -17,7 +17,6 @@ const Caret = ({ gameState }) => {
           char.getBoundingClientRect().top + window.scrollY + "px";
         caret.style.left = char.getBoundingClientRect().left.toString() + "px";
       } else {
-        console.log("SHOULDF UPDATE HERE");
         char = Array.from(document.querySelectorAll(".character"))[lastIndex];
         caret.style.top =
           char.getBoundingClientRect().top + window.scrollY + "px";

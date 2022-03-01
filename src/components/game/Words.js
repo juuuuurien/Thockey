@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import { context } from "../../context/context";
+import Button from "../global/Button";
+import Caret from "./Caret";
 
 const Words = ({ gameState }) => {
   const [state, setState] = useContext(context);

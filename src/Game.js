@@ -16,7 +16,6 @@ import GameModeSelector from "./components/game/GameModeSelector";
 import dayjs from "dayjs";
 
 import { VscDebugRestart } from "react-icons/vsc";
-import ResetLabel from "./components/game/ResetLabel";
 import { finishAnimation } from "./helpers/finishAnimation";
 import { generateQuotes } from "./helpers/generateQuotes";
 
@@ -283,22 +282,8 @@ const Game = () => {
   return (
     <div className="game-container">
       <div className="content-container">
-        <div className="button-container">
-          <Button
-            round
-            icon={<VscDebugRestart color="#f5ef7a" />}
-            className="restart"
-            onClick={() => {
-              handleReset(state.wordCount);
-            }}
-          />
-          <div
-            className={
-              gameState.gamemode === "default"
-                ? "button-container"
-                : "button-container disabled"
-            }
-          >
+        {gameState.gamemode === "default" && (
+          <div className="button-container">
             <Button
               onClick={() => {
                 handleReset(15);
@@ -324,32 +309,50 @@ const Game = () => {
               50
             </Button>
           </div>
+        )}
+        <div style={{ display: "flex", float: "right" }}>
+          <Button
+            round
+            icon={<VscDebugRestart color="#f5ef7a" />}
+            className="restart"
+            onClick={() => {
+              handleReset(state.wordCount);
+            }}
+          />
         </div>
       </div>
       <div className="words-content-container">
         {!state.finished && (
-          <div style={{ color: "rgb(227, 237, 255)", fontSize: "1rem" }}>
-            WPM: {state.wpm}
+          <div
+            style={{
+              width: "100%",
+              color: "rgb(227, 237, 255)",
+              fontSize: "1rem",
+              fontWeight: 400,
+              justifyContent: "center"
+            }}
+          >
+            <span style={{ fontSize: "1.25rem" }}>{state.wpm}</span> wpm
             <span className="capslock">
               {state.capslock === true && "CapsLock is on"}
             </span>
+            <GameModeSelector
+              gameState={gameState}
+              setGameState={setGameState}
+              handleReset={handleReset}
+            />
           </div>
         )}
         {/* render sentence here VV*/}
         {gameState.sentence && <Words gameState={gameState} />}
-        <GameModeSelector
-          gameState={gameState}
-          setGameState={setGameState}
-          handleReset={handleReset}
-        />
-        <ResetLabel />
-        <button
+
+        {/* <button
           onClick={() => {
             setState({ ...state, finished: !state.finished });
           }}
         >
           finish
-        </button>
+        </button> */}
       </div>
       <div className="content-container" />
     </div>

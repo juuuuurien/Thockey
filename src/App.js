@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Provider } from "./context/context";
 import StarryBackground from "./StarryBackground";
 import { initialState } from "./static/initialAppState";
+import ResetLabel from "./components/game/ResetLabel";
 
 function App() {
   const [state, setState] = useState(initialState);
@@ -31,6 +32,8 @@ function App() {
       <StarryBackground className="background" />
       <ThockeyLogo />
       <Game />
+      {/* chore: create a footer component */}
+      <ResetLabel />
     </Provider>
   );
 }

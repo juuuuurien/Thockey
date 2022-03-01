@@ -64,10 +64,6 @@ body {
   color: rgba(20, 49, 138, 0.767);
   white-space: break-spaces;
   user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -o-user-select: none;
 }
 
 .big.character {
@@ -100,9 +96,9 @@ body {
   display: flex;
   position: relative;
   font-weight: 400;
-  font-size: 1rem;
-  height: 2rem;
-  width: 2rem;
+  font-size: 0.85rem;
+  height: 1.6rem;
+  width: 1.6rem;
   align-items: center;
   justify-content: center;
   text-align: center;
