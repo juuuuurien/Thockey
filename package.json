@@ -9,7 +9,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "chart.js": "^3.7.0",
-    "chartjs-plugin-datalabels": "2.0.0",
+    "chartjs-plugin-datalabels": "^2.0.0",
     "dayjs": "^1.10.7",
     "gh-pages": "^3.2.3",
     "random-words": "^1.1.1",
