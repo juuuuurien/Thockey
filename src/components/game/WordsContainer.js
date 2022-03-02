@@ -1,5 +1,6 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { context } from "../../context/context";
+import Caret from "./Caret";
 import Results from "./Results";
 import Words from "./Words";
 
@@ -10,7 +11,7 @@ const WordsContainer = ({ gameState }) => {
 
   return (
     <div className="words-container">
-      <div className={state.caretHidden ? "caret fade-out" : "caret"} />
+      {!state.finished && gameState.sentence && <Caret gameState={gameState} />}
       {!state.finished ? <Words gameState={gameState} /> : <Results />}
     </div>
   );

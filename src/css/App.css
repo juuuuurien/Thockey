@@ -1,5 +1,26 @@
-.App {
-  text-align: center;
+html {
+  /* this makes sure the padding and the border is included in the box sizing */
+  margin: 0;
+  overflow: overlay;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background-attachment: fixed;
+  background-color: #000108;
+  background-image: linear-gradient(#000000, rgb(4, 9, 31) 70%, #061d54);
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  padding-top: 4rem;
+  padding-bottom: 16rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .capslock {
@@ -8,7 +29,7 @@
   margin: auto;
   padding: 1rem;
   width: 750px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Source Code Pro", monospace;
 }
 
 .right.character {
@@ -18,10 +39,10 @@
 }
 
 .caret {
-  height: 29px;
-  width: 3px;
-  background-color: rgba(255, 255, 255, 0.363);
-  position: fixed;
+  position: absolute;
+  height: 32px;
+  width: 2.3px;
+  background-color: white;
   transition: 130ms ease;
   line-height: 2.5rem;
   transform: translateX(-3.5px);
@@ -32,16 +53,21 @@
   transition: all 0.15s linear;
 }
 
+#missed-characters {
+  color: rgb(255, 102, 128);
+}
+
 .character {
   /* padding: 0 0.03rem; */
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-family: "Source Code Pro", monospace;
-  color: rgba(39, 63, 136, 0.767);
+  color: rgba(20, 49, 138, 0.767);
+  white-space: break-spaces;
   user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -o-user-select: none;
+}
+
+.big.character {
+  font-size: 1.6rem;
 }
 
 .ThockeyLogo {
@@ -57,56 +83,38 @@
 .game_container {
   display: flex;
   flex-direction: row;
-  width: 720px;
-
   margin: auto;
   justify-content: center;
 }
 
 .background {
-  position: absolute;
+  position: fixed;
   z-index: -1;
-}
-
-.smallStar {
-  position: absolute;
-  background-color: white;
-  animation: smallRise 5s linear infinite;
-}
-
-@keyframes smallRise {
-  from {
-    transform: translateY(-30%);
-  }
-  to {
-    transform: translateY(100%);
-  }
 }
 
 .button {
   display: flex;
   position: relative;
   font-weight: 400;
-  font-size: 1rem;
-  height: 1.7rem;
-  width: 1.7rem;
-  letter-spacing: 1px;
+  font-size: 0.85rem;
+  height: 1.6rem;
+  width: 1.6rem;
   align-items: center;
   justify-content: center;
   text-align: center;
   align-self: center;
-  border: 1px solid #202637;
+  background-color: #1324b810;
+  border: 1px solid #060f66;
   cursor: pointer;
   outline: 0;
-  background-color: #0c162d;
   margin: 0.5rem;
   transition: all 200ms linear;
-  color: #82b0be;
+  color: #1324b8;
 }
 
 .button.selected {
   color: #f5ef7a;
-  border: 1px solid #373720;
+  border: 1px solid #53531f;
 }
 
 .button:hover {
@@ -120,19 +128,15 @@
 }
 
 .words-container {
-  background-color: #1324b857;
-  padding: 1rem;
+  background-color: #1324b810;
+  margin: 0.5rem 0rem;
+  padding: 2rem;
   border-radius: 0.5rem;
   text-align: left;
-  line-height: 2rem;
+  line-height: 2.5rem;
   border: 1px solid rgb(1, 7, 70);
   overflow: hidden;
   transition: all 100ms ease-in;
-}
-
-body {
-  background-color: #000108;
-  overflow: hidden;
 }
 
 .blink {

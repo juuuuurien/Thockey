@@ -1,0 +1,20 @@
+export const funfacts = [
+  "Ditto was meant to be usable through pokeballs in Super Smash Bros. Melee. It was meant to transform into whoever threw the ball and would help fight.",
+  "If you set the system language to Japanese in Super Smash Bros. Melee, Mewtwo will speak in fulls entences during its victory poses.",
+  "Both Solid Snake and Sonic the HedgeHog were supposed to be characters in Super Smash Bros. Melee, but due to time constraints, he couldn't be added to the game.",
+  "While developing Super Smash Bros. Melee, creator Masahiro Sakurai only took one day off of work and even fainted while working on the game's musical composition.",
+  "In Super Mario Sunshine, Il Pianticcimo is a masked man disguised as a Pianta. Unmasked, is actually the running man from Ocarina of Time and Majoras Mask!",
+  "Mario's very first appearance was not in a Super Mario game, but rather the 1981 arcade platformer, Donkey Kong.",
+  "Bowser from the Super Mario series was originally sketched up as an ox by creator Shigeru Miyamoto, but his drawing were misinterpreted by animator Yoichi Kotabe as a turtle.",
+  "Koji Kondo is one of the most famous video game composers for his work on all the previous Legend of Zelda games. However, Breath of the Wild is the first Zelda game title without his work.",
+  "Nintendo CEO Satoru Iwata, who passed away in 2015, was paid tribute in The Legend of Zelda Breath of the Wild. Satori Mountain named after him and the developers designed this mountaintop to be one of the most beautiful areas in the game.",
+  "It is known that Breath of the Wild's Hyrule is insanely large. In comparison to Twilight Princess' Hyrule, it is actually 12 times larger.",
+  "In The Legend of Zelda Ocarina of Time, there is a glitch that allows Link to warp directly from the Great Deku Tree to escaping Ganon's castle, allowing you to beat the game in under 25 minutes.",
+  "The overworld theme for World 3 of Super Mario Bros. 3 is actually the predecessor to the Great Fairy Fountain theme from The Legend of Zelda.",
+  "In the Legend of Zelda Wind Waker, there is concept art of an adult Link in various action poses. This could suggest Link's age was supposed to change throughout the game similar to Ocarina of Time. ",
+  "One of the developers for Batman Arkham Aslum worked on nothing but Batman’s cape for over two years straight. He had to come up with over 700 unique animations and sound effects in order to capture it’s full flappy glory.",
+  "Hironobu Sakaguchi explained that Final Fantasy was his personal last-ditch effort in the game industry and that its title stemmed from his feelings at the time; had the game not sold well, he would have quit the business and gone back to university.",
+  "The Konami Code was created by Kazuhisa Hashimoto, who was developing the 1985 arcade game Gradius for the NES. He created the cheat code to traverse the game quickly as it gave all powerups. The code was forgotten and never removed.",
+  "As a means to boost game sales, Rockstar paid a PR expert to cause controversy and get GTA negative press coverage.",
+  "Minecraft is currently the best-selling game ever. Its creator Marcus Persson, a.k.a Notch, recorded over $180 million in sales."
+];

@@ -3,19 +3,28 @@ import ThockeyLogo from "./Banner";
 import { useState, useEffect } from "react";
 import { Provider } from "./context/context";
 import StarryBackground from "./StarryBackground";
+import { initialState } from "./static/initialAppState";
+import ResetLabel from "./components/game/ResetLabel";
 
 function App() {
-  const [state, setState] = useState({
-    started: false,
-    finished: false,
-    capslock: false,
-    wpm: 0,
-    cps: 0,
-    msElapsed: 0,
-    numWords: 25,
-    accuracy: 0,
-    setting: false,
-    caretHidden: false,
+  const [state, setState] = useState(initialState);
+
+  const handleResize = () => {
+    setState({ ...state, settingStars: false });
+  };
+
+  useEffect(() => {
+    // handle resizing of window;
+    let timeout;
+
+    window.onresize = () => {
+      setState({ ...state, settingStars: true });
+      timeout = setTimeout(() => {
+        handleResize();
+      }, 100);
+    };
+
+    clearTimeout(timeout);
   });
 
   return (
@@ -23,6 +32,8 @@ function App() {
       <StarryBackground className="background" />
       <ThockeyLogo />
       <Game />
+      {/* chore: create a footer component */}
+      <ResetLabel />
     </Provider>
   );
 }
