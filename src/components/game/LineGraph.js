@@ -7,7 +7,7 @@ import {
   PointElement,
   LineElement,
   Title,
-  Tooltip
+  Tooltip,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -29,37 +29,37 @@ export const options = {
       color: "rgb(227, 237, 255)",
       formatter: Math.round,
       font: {
-        weight: "bold"
-      }
+        weight: "bold",
+      },
     },
     title: {
-      display: false
-    }
+      display: false,
+    },
   },
   scales: {
     x: {
       ticks: {
-        color: "rgb(227, 237, 255)"
+        color: "rgb(227, 237, 255)",
       },
       display: true,
       title: {
         display: true,
         text: "Time in milliseconds",
-        color: "rgb(227, 237, 255)"
-      }
+        color: "rgb(227, 237, 255)",
+      },
     },
     y: {
       ticks: {
-        color: "rgb(227, 237, 255)"
+        color: "rgb(227, 237, 255)",
       },
       display: true,
       title: {
         display: true,
         text: "Words per Minute",
-        color: "rgb(227, 237, 255)"
-      }
-    }
-  }
+        color: "rgb(227, 237, 255)",
+      },
+    },
+  },
 };
 
 const LineGraph = () => {
@@ -71,12 +71,12 @@ const LineGraph = () => {
     labels,
     datasets: [
       {
-        label: "Avaerage Words per Minute vs Time",
+        label: "Average Words per Minute vs Time",
         data: state.wpmData,
         borderColor: "#2654b8",
-        backgroundColor: "rgb(227, 237, 255)"
-      }
-    ]
+        backgroundColor: "rgb(227, 237, 255)",
+      },
+    ],
   };
 
   return (
@@ -84,7 +84,7 @@ const LineGraph = () => {
       style={{
         backgroundColor: "#1323b810",
         borderRadius: 10,
-        padding: "1rem"
+        padding: "1rem",
       }}
       options={options}
       data={data}
