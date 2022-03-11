@@ -19,6 +19,7 @@ const Words = ({ gameState }) => {
           <span className="quote-wrapper">{`“ `}</span>
         )}
         {/* -- ACTUAL SPANS -- */}
+        <Caret gameState={gameState} />
         {gameState.sentence && gameState.sentence.spans}
         {/* -- ACTUAL SPANS -- */}
         {gameState.gamemode === "quotes" && (

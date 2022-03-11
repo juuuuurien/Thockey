@@ -39,7 +39,7 @@ body {
 }
 
 .caret {
-  position: absolute;
+  position: fixed;
   height: 32px;
   width: 2.3px;
   background-color: white;

@@ -24,13 +24,10 @@ export const options = {
   responsive: true,
   plugins: {
     datalabels: {
-      anchor: "end",
-      align: "top",
-      color: "rgb(227, 237, 255)",
-      formatter: Math.round,
-      font: {
-        weight: "bold",
-      },
+      display: false,
+    },
+    legend: {
+      display: false,
     },
     title: {
       display: false,
@@ -71,7 +68,6 @@ const LineGraph = () => {
     labels,
     datasets: [
       {
-        label: "Average Words per Minute vs Time",
         data: state.wpmData,
         borderColor: "#2654b8",
         backgroundColor: "rgb(227, 237, 255)",
