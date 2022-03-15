@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { context } from "../../context/context";
 import {
   Chart as ChartJS,

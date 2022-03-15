@@ -12,5 +12,5 @@ export const initialState = {
   caretHidden: false,
   quoteFinished: false,
   wpmData: [],
-  msElapsedData: []
+  msElapsedData: [],
 };

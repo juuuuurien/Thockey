@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { context } from "../../context/context";
 import BarGraph from "./BarGraph";
 import LineGraph from "./LineGraph";
@@ -36,7 +36,7 @@ const Results = ({ gameState }) => {
             flex: 1.25,
             display: "flex",
             alignItems: "center",
-            margin: "1rem"
+            margin: "1rem",
           }}
         >
           <BarGraph />

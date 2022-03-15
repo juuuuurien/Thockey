@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { context } from "../context/context";
 
 const calculateAccuracy = () => {
@@ -28,7 +28,7 @@ export const finishAnimation = (state, setState, gamemode) => {
           finished: true,
           caretHidden: true,
           accuracy: accuracy,
-          wrongCharacters: wrongCharacters
+          wrongCharacters: wrongCharacters,
         });
         return clearTimeout(timer2);
       }, 150);

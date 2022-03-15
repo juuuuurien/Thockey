@@ -1,7 +1,7 @@
 import "./css/App.css";
 import "./css/Game.css";
 import "./css/mobile.css";
-import { useContext, useEffect, useState, useRef } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import useKeyPress from "./hooks/useKeyPress";
 
 import { generateSentence } from "./helpers/generateSentence";
@@ -9,7 +9,7 @@ import { spanify } from "./helpers/spanify";
 
 import { context } from "./context/context";
 
-import Words from "./components/game/WordsContainer";
+import WordsContainer from "./components/game/WordsContainer";
 import Button from "./components/global/Button";
 import GameModeSelector from "./components/game/GameModeSelector";
 
@@ -18,13 +18,14 @@ import dayjs from "dayjs";
 import { VscDebugRestart } from "react-icons/vsc";
 import { finishAnimation } from "./helpers/finishAnimation";
 import { generateQuotes } from "./helpers/generateQuotes";
+import ResetLabel from "./components/game/ResetLabel";
 
 const Game = () => {
   const [state, setState] = useContext(context);
   const [gameState, setGameState] = useState({
     gamemode: "default",
     sentence: undefined,
-    currentIndex: 0
+    currentIndex: 0,
   });
   const timerRef = useRef();
   const stateRef = useRef();
@@ -69,7 +70,7 @@ const Game = () => {
 
       setState({
         ...state,
-        wpm: _wpm
+        wpm: _wpm,
       });
 
       //  pull data, spread data, set the data.
@@ -80,18 +81,16 @@ const Game = () => {
         let new_past_wpms = oldData.data.past_wpms.slice(0, -1);
         let new_past_dates = oldData.data.past_dates.slice(0, -1);
 
-        console.log(new_past_wpms);
-
         data = {
           data: {
-            past_wpms: [_wpm, ...new_past_wpms],
-            past_dates: [dayjs().format("MMM, DD"), ...new_past_dates]
-          }
+            past_wpms: [state.wpm, ...new_past_wpms],
+            past_dates: [dayjs().format("MMM, DD"), ...new_past_dates],
+          },
         };
       } else {
         data = {
           data: {
-            past_wpms: [_wpm, 0, 0, 0, 0, 0, 0],
+            past_wpms: [state.wpm, 0, 0, 0, 0, 0, 0],
             past_dates: [
               dayjs().format("MMM, DD"),
               "-",
@@ -99,9 +98,9 @@ const Game = () => {
               "-",
               "-",
               "-",
-              "-"
-            ]
-          }
+              "-",
+            ],
+          },
         };
       }
 
@@ -111,7 +110,7 @@ const Game = () => {
     finishAnimation(state, setState, gameState.gamemode);
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     stateRef.current = state;
     let { sentence } = gameState;
 
@@ -132,12 +131,12 @@ const Game = () => {
         if (gameState.gamemode === "quotes") {
           setGameState({
             ...gameState,
-            sentence: { spans: spans, string: string, author: a }
+            sentence: { spans: spans, string: string, author: a },
           });
         } else {
           setGameState({
             ...gameState,
-            sentence: { spans: spans, string: string }
+            sentence: { spans: spans, string: string },
           });
         }
       }
@@ -153,6 +152,7 @@ const Game = () => {
     let msElapsedData = [];
     let msElapsedBefore = 0;
 
+    //gameloop
     const timer = setInterval(() => {
       msElapsedBefore++;
 
@@ -160,6 +160,7 @@ const Game = () => {
       let timeNow = dayjs();
       let msElapsed = timeNow.diff(timeStart, "ms");
       let arr = Array.from(document.querySelectorAll(".done"));
+
       if (arr.length > 0) {
         let str = "";
         let right = 0;
@@ -188,7 +189,7 @@ const Game = () => {
           wpm: _wpm,
           msElapsed: msElapsed,
           wpmData: wpmData,
-          msElapsedData: msElapsedData
+          msElapsedData: msElapsedData,
         });
       }
     }, 100);
@@ -265,26 +266,31 @@ const Game = () => {
     }
   });
 
-  const handleReset = (words) => {
+  const handleReset = async (words) => {
     // clear timer, reset all state to default.
-    setGameState({ ...gameState, sentence: undefined, currentIndex: 0 });
-    setState({
-      started: false,
-      finished: false,
-      capslock: false,
-      wpm: 0,
-      msElapsed: 0,
-      wordCount: words,
-      accuracy: 0,
-      wrongCharacters: 0,
-      settingStars: false,
-      setting: false,
-      caretHidden: false,
-      quoteFinished: false,
-      wpmData: [],
-      msElapsedData: []
-    });
     clearInterval(timerRef.current);
+    const clear = async () => {
+      setGameState({ ...gameState, sentence: undefined, currentIndex: 0 });
+    };
+
+    await clear().then(() => {
+      setState({
+        started: false,
+        finished: false,
+        capslock: false,
+        wpm: 0,
+        msElapsed: 0,
+        wordCount: words,
+        accuracy: 0,
+        wrongCharacters: 0,
+        settingStars: false,
+        setting: false,
+        caretHidden: false,
+        quoteFinished: false,
+        wpmData: [],
+        msElapsedData: [],
+      });
+    });
   };
 
   return (
@@ -337,7 +343,7 @@ const Game = () => {
               color: "rgb(227, 237, 255)",
               fontSize: "1rem",
               fontWeight: 400,
-              justifyContent: "center"
+              justifyContent: "center",
             }}
           >
             <span style={{ fontSize: "1.25rem" }}>{state.wpm}</span> wpm
@@ -352,15 +358,8 @@ const Game = () => {
           </div>
         )}
         {/* render sentence here VV*/}
-        {gameState.sentence && <Words gameState={gameState} />}
-
-        {/* <button
-          onClick={() => {
-            setState({ ...state, finished: !state.finished });
-          }}
-        >
-          finish
-        </button> */}
+        {gameState.sentence && <WordsContainer gameState={gameState} />}
+        <ResetLabel />
       </div>
       <div className="content-container" />
     </div>

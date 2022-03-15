@@ -1,4 +1,10 @@
-import { useContext, useEffect, useRef, useState, useCallback } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+} from "react";
 import { generateStars } from "./helpers/generateStars";
 import { context } from "./context/context";
 
@@ -17,7 +23,7 @@ const StarryBackground = () => {
           y: star.y,
           size: star.size,
           color: star.color,
-          speed: star.speed
+          speed: star.speed,
         };
         return _star;
       });

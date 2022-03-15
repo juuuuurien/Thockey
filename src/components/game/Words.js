@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { context } from "../../context/context";
 import Button from "../global/Button";
 import Caret from "./Caret";
@@ -9,6 +9,7 @@ const Words = ({ gameState }) => {
   // when should component use fade-out animation? -> when resetting & when the game is finished
   // maybe make a helper function that sets state to setting and then sets it back after a while
   // as a reusable animation function
+
   return (
     <div>
       <div className={state.setting ? "sentence fade-out" : "sentence fade-in"}>
@@ -19,7 +20,6 @@ const Words = ({ gameState }) => {
           <span className="quote-wrapper">{`“ `}</span>
         )}
         {/* -- ACTUAL SPANS -- */}
-        <Caret gameState={gameState} />
         {gameState.sentence && gameState.sentence.spans}
         {/* -- ACTUAL SPANS -- */}
         {gameState.gamemode === "quotes" && (

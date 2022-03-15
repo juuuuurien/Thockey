@@ -1,3 +1,5 @@
+import React from "react";
+
 export const spanify = async (s, gamemode) => {
   let string = s;
   const spans = s.split("").map((c, i) => {

@@ -63,13 +63,19 @@
 }
 
 #reset-label {
+  margin-top: 75px;
   color: #1324b8;
   display: flex;
+  flex: 1;
   flex-direction: row;
   font-size: 0.75rem;
-  align-items: center;
-  justify-content: center;
   font-weight: 600;
+}
+
+#reset-label a {
+  text-align: center;
+  color: inherit;
+  text-decoration: none; /* no underline */
 }
 
 #reset-label #key {

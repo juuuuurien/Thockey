@@ -1,9 +1,20 @@
 html {
   /* this makes sure the padding and the border is included in the box sizing */
   margin: 0;
-  overflow: overlay;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+::-webkit-scrollbar {
+  /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
 }
 
 body {
@@ -39,7 +50,7 @@ body {
 }
 
 .caret {
-  position: fixed;
+  position: absolute;
   height: 32px;
   width: 2.3px;
   background-color: white;
@@ -78,6 +89,11 @@ body {
   text-align: center;
   font-size: 4rem;
   font-family: "Pacifico", cursive;
+}
+
+.ThockeyLogo.finished {
+  font-size: 3rem;
+  padding: 2rem 0 2rem 0;
 }
 
 .game_container {

@@ -1,6 +1,6 @@
 import Game from "./Game";
-import ThockeyLogo from "./Banner";
-import { useState, useEffect } from "react";
+import ThockeyLogo from "./Logo";
+import React, { useState, useEffect } from "react";
 import { Provider } from "./context/context";
 import StarryBackground from "./StarryBackground";
 import { initialState } from "./static/initialAppState";
@@ -30,10 +30,9 @@ function App() {
   return (
     <Provider value={[state, setState]}>
       <StarryBackground className="background" />
-      <ThockeyLogo />
+      <ThockeyLogo state={state} />
       <Game />
       {/* chore: create a footer component */}
-      <ResetLabel />
     </Provider>
   );
 }

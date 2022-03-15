@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { context } from "../../context/context";
 
 const GameModeSelector = ({ gameState, setGameState, handleReset }) => {
@@ -10,7 +10,7 @@ const GameModeSelector = ({ gameState, setGameState, handleReset }) => {
     setGameState({
       currentIndex: 0,
       sentence: undefined,
-      gamemode: type
+      gamemode: type,
     });
   };
 
