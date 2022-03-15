@@ -21,7 +21,7 @@ function App() {
       setState({ ...state, settingStars: true });
       timeout = setTimeout(() => {
         handleResize();
-      }, 100);
+      }, 50);
     };
 
     clearTimeout(timeout);
